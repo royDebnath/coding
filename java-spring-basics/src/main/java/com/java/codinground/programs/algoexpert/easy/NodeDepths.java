@@ -1,6 +1,6 @@
 package com.java.codinground.programs.algoexpert.easy;
 
-import com.java.codinground.programs.support.BST;
+import com.java.codinground.support.BST;
 
 /**
  * Given a Binary Tree, find the depth of each node in the tree,

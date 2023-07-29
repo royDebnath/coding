@@ -1,9 +1,6 @@
 package com.java.codinground.programs.algoexpert.medium;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Write a function that takes in a non-empty array of distinct integers and
@@ -27,8 +24,8 @@ public class ThreeNumberSum {
         int[] input = {12, 3, 1, 2, -6, 5, -8, 6};
         List<Integer[]> output = threeNumberSum(input, 0);
         for (Integer[] triplets : output) {
-            System.out.print(triplets[0]+", ");
-            System.out.print(triplets[1]+", ");
+            System.out.print(triplets[0] + ", ");
+            System.out.print(triplets[1] + ", ");
             System.out.println(triplets[2]);
             System.out.println("===================");
         }
@@ -39,19 +36,55 @@ public class ThreeNumberSum {
         int length = input.length;
         for (int i = 0; i < length; i++) {
             int first = input[i];
-            int currentTarget = target- first;
+            int currentTarget = target - first;
             Set<Integer> existing = new HashSet<>();
-            for (int j = i+1; j < length; j++) {
+            for (int j = i + 1; j < length; j++) {
                 int second = input[j];
-                if (existing.contains(currentTarget- second)){
-                    int third = currentTarget-second;
-                    result.add(new Integer[]{first,second,third});
-                }
-                else {
+                if (existing.contains(currentTarget - second)) {
+                    int third = currentTarget - second;
+                    result.add(new Integer[]{first, second, third});
+                } else {
                     existing.add(second);
                 }
             }
         }
         return result;
     }
+
+    /**
+     *
+     Sort the input array
+     Initialize a set to store the unique triplets and an output vector to store the final result
+     Iterate through the array with a variable i, starting from index 0.
+     Initialize two pointers, j and k, with j starting at i+1 and k starting at the end of the array.
+     In the while loop, check if the sum of nums[i], nums[j], and nums[k] is equal to 0. If it is, insert the triplet into the set and increment j and decrement k to move the pointers.
+     If the sum is less than 0, increment j. If the sum is greater than 0, decrement k.
+     After the while loop, iterate through the set and add each triplet to the output vector.
+     Return the output vector
+     *
+     */
+    private static List<List<Integer>> threeNumberSumWithSorting(int[] nums, int target) {
+        Arrays.sort(nums);
+        Set<List<Integer>> s = new HashSet<>();
+        List<List<Integer>> output = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++){
+            int j = i + 1;
+            int k = nums.length - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum == target) {
+                    s.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    j++;
+                    k--;
+                } else if (sum < target) {
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+        output.addAll(s);
+        return output;
+    }
+
 }

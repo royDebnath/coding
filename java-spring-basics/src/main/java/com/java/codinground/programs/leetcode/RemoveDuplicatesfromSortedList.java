@@ -1,6 +1,6 @@
 package com.java.codinground.programs.leetcode;
 
-import com.java.codinground.programs.support.ListNode;
+import com.java.codinground.support.ListNode;
 
 /**
  * Given the head of a sorted linked list,

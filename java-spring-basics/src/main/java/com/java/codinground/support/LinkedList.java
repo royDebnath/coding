@@ -1,4 +1,4 @@
-package com.java.codinground.programs.support;
+package com.java.codinground.support;
 
 public class LinkedList {
     public int data;

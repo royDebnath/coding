@@ -1,6 +1,6 @@
 package com.java.codinground.programs.algoexpert.easy;
 
-import com.java.codinground.programs.support.BST;
+import com.java.codinground.support.BST;
 
 import java.util.ArrayList;
 import java.util.List;
