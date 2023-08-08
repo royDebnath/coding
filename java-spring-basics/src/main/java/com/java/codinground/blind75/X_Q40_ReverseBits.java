@@ -37,5 +37,5 @@ package com.java.codinground.blind75;
  *
  * Follow up: If this function is called many times, how would you optimize it?
  */
-public class Q40_ReverseBits {
+public class X_Q40_ReverseBits {
 }

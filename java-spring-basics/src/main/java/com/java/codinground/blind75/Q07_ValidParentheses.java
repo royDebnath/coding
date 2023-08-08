@@ -3,6 +3,9 @@ package com.java.codinground.blind75;
 import java.util.Stack;
 
 /**
+ * 20. Valid Parentheses
+ * Easy
+ *
  * Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
  *
  * An input string is valid if:
@@ -26,9 +29,9 @@ import java.util.Stack;
  *
  *
  */
-public class Q7_ValidParentheses {
+public class Q07_ValidParentheses {
     public static void main(String[] args) {
-        System.out.println(validParentheses("([}}])"));
+        System.out.println(validParentheses("[{}]]"));
     }
 
     private static boolean validParentheses(String s) {

@@ -27,14 +27,17 @@ import java.util.Map;
  * 3. 2 steps + 1 step
  */
 public class Q20_ClimbingStairs {
-    public int climbStairs(int n) {
+    public static void main(String[] args) {
+        System.out.println(climbStairs(3));
+    }
+    public static int climbStairs(int n) {
         Map<Integer, Integer> memo = new HashMap<>();
         memo.put(1, 1);
         memo.put(2, 2);
         return climbStairs(n, memo);
     }
 
-    private int climbStairs(int n, Map<Integer, Integer> memo) {
+    private static int climbStairs(int n, Map<Integer, Integer> memo) {
         if (memo.containsKey(n)) {
             return memo.get(n);
         }

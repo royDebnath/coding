@@ -3,6 +3,9 @@ package com.java.codinground.blind75;
 import com.java.codinground.support.ListNode;
 
 /**
+ * 143. Reorder List
+ * Medium
+ *
  * You are given the head of a singly linked-list. The list can be represented as:
  *
  * L0 → L1 → … → Ln - 1 → Ln
@@ -14,55 +17,77 @@ import com.java.codinground.support.ListNode;
  *
  */
 public class Q37_ReorderList {
+    public static void main(String[] args) {
+        ListNode head = new ListNode(0);
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(2);
+        ListNode n3 = new ListNode(3);
+        ListNode n4 = new ListNode(4);
+        ListNode n5 = new ListNode(5);
+        ListNode n6 = new ListNode(6);
+        ListNode n7 = new ListNode(7);
+        head.next=n1;n1.next=n2;n2.next=n3;n3.next=n4;n4.next=n5;n5.next=n6;n6.next=n7;
+        printLinkedList(head);
+        reorderList(head);
+        System.out.println("\nOutput\n");
+        printLinkedList(head);
+    }
 
-    public void reorderList(ListNode head) {
-        if (head == null || head.next == null)
+    public static void reorderList(ListNode head) {
+        if (head == null) {
             return;
+        }
 
-        // step 1. cut the list to two halves
-        // prev will be the tail of 1st half
-        // slow will be the head of 2nd half
-        ListNode prev = null, slow = head, fast = head, l1 = head;
-
+        // Find the middle node
+        ListNode slow = head, fast = head.next;
         while (fast != null && fast.next != null) {
-            prev = slow;
             slow = slow.next;
             fast = fast.next.next;
         }
 
-        prev.next = null;
+        // Reverse the second half
+        ListNode head2 = reverse(slow.next);
+        slow.next = null;
 
-        // step 2. reverse the 2nd half
-        ListNode l2 = reverse(slow);
-
-        // step 3. merge the two halves
-        merge(l1, l2);
+        /**
+         * At this point:
+         * head : 0->1-2->3
+         * head2 : 7->6->5->4
+         */
+        // Link the two halves together
+        while (head != null && head2 != null) {
+            ListNode tmp1 = head.next; //tmp1=1
+            ListNode tmp2 = head2.next; // tmp2=6
+            head2.next = head.next; //head2.next=1
+            head.next = head2; // head.next = 7
+            // at this point
+            // head : 0->7->1
+            head = tmp1; // head : 1->2->3
+            head2 = tmp2; // head2 : 6->5->4
+        }
     }
 
-    ListNode reverse(ListNode head) {
-        ListNode prev = null, curr = head, next = null;
-
-        while (curr != null) {
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+    private static ListNode reverse(ListNode n) {
+        ListNode prev = null;
+        ListNode cur = n;
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = tmp;
         }
-
         return prev;
     }
-
-    void merge(ListNode l1, ListNode l2) {
-        while (l1 != null) {
-            ListNode n1 = l1.next, n2 = l2.next;
-            l1.next = l2;
-
-            if (n1 == null)
-                break;
-
-            l2.next = n1;
-            l1 = n1;
-            l2 = n2;
+    private static void printLinkedList(ListNode head) {
+        ListNode current = head;
+        System.out.print(current.val + "->");
+        while (current.next != null) {
+            if (current.next.next == null) {
+                System.out.print(current.next.val + "->|");
+            } else {
+                System.out.print(current.next.val + "->");
+            }
+            current = current.next;
         }
     }
 

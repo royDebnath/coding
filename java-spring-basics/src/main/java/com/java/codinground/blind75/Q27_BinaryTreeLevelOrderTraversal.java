@@ -2,10 +2,7 @@ package com.java.codinground.blind75;
 
 import com.java.codinground.support.TreeNode;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * Given the root of a binary tree, return the level order traversal of its nodes' values.
@@ -34,21 +31,34 @@ import java.util.List;
  * Space Complexity: O(N) for our answer array
  */
 public class Q27_BinaryTreeLevelOrderTraversal {
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(3);
+        root.left= new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
+        for (List<Integer> integers : levelOrder(root)) {
+            System.out.print(integers.toString());
+        }
+    }
+    public static List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null) return ans;
-        Deque<TreeNode> queue = new ArrayDeque<>();
-        queue.add(root);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
         while (!queue.isEmpty()) {
-            int qlen = queue.size();
-            List<Integer> row = new ArrayList<>();
-            for (int i = 0; i < qlen; i++) {
+            int qlen = queue.size(); // nodes in the current level
+            List<Integer> currentLevelNodes = new ArrayList<>();
+            for (int i = 0; i < qlen; i++) { //using qlen instead of queue.size because adding the next level in the queue inside this loop
+                //Process the current level
                 TreeNode curr = queue.poll();
-                row.add(curr.val);
-                if (curr.left != null) queue.add(curr.left);
-                if (curr.right != null) queue.add(curr.right);
+                currentLevelNodes.add(curr.val);
+
+                //prepare the next level by adding the next level in queue
+                if (curr.left != null) queue.add(curr.left); //populating the next level in queue
+                if (curr.right != null) queue.add(curr.right);//populating the next level in queue
             }
-            ans.add(row);
+            ans.add(currentLevelNodes); //after each level processed this will be called
         }
         return ans;
     }

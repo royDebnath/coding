@@ -20,16 +20,31 @@ import com.java.codinground.support.TreeNode;
  *
  */
 public class Q31_BinaryTreeMaximumPathSum {
-    int max = Integer.MIN_VALUE;
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(-10);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
+        System.out.println(maxPathSum(root));
 
-    public int maxPathSum(TreeNode root) {
+    }
+    static int max = Integer.MIN_VALUE;
+
+    public static int maxPathSum(TreeNode root) {
         helper(root);
         return max;
     }
 
-    // helper returns the max branch
-    // plus current node's value
-    int helper(TreeNode root) {
+
+    /**
+     * this function goes from the bottom of the tree to the top, it's in post-order manner.
+     *
+     * At every node, we need to make a decision, if the sum comes from the left path larger than
+     * the right path, we pick the left path and plus the current node's value, this recursion
+     * goes all the way up to the root node.
+     */
+    static int helper(TreeNode root) {
         if (root == null) return 0;
 
         int left = Math.max(helper(root.left), 0);

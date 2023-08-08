@@ -59,8 +59,7 @@ class Q39_FindMinimumInRotatedSortedArray {
             return nums[low];
 
         // Find mid
-        int mid
-                = low + (high - low) / 2; /*(low + high)/2;*/
+        int mid = low + (high - low) / 2; /*(low + high)/2;*/
 
         // Check if element (mid+1) is minimum element.
         // Consider the cases like {3, 4, 5, 1, 2}

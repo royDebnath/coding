@@ -35,7 +35,22 @@ import java.util.Map;
  * lRUCache.get(3);    // return 3
  * lRUCache.get(4);    // return 4
  */
-public class LRUCache {
+
+public class LRUCacheApplication{
+    public static void main(String[] args) {
+        System.out.println();LRUCache lRUCache = new LRUCache(2);
+        lRUCache.put(1, 1); // cache is {1=1}
+        lRUCache.put(2, 2); // cache is {1=1, 2=2}
+        lRUCache.get(1);    // return 1
+        lRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+        lRUCache.get(2);    // returns -1 (not found)
+        lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+        lRUCache.get(1);    // return -1 (not found)
+        lRUCache.get(3);    // return 3
+        lRUCache.get(4);    // return 4
+    }
+}
+class LRUCache {
     final Node head = new Node(); //dummy node to keep track of position while insertion/deletion
     final Node tail = new Node(); //dummy node to keep track of position while insertion/deletion
     Map<Integer, Node> cache;
@@ -50,11 +65,11 @@ public class LRUCache {
 
     public int get(int key) {
         int returnValue = -1;
-        Node keyNode = cache.get(key);
-        if (keyNode != null) {
-            returnValue = keyNode.value;
-            remove(keyNode);
-            add(keyNode); //removing and adding just to place the node in the front
+        Node node = cache.get(key);
+        if (node != null) {
+            returnValue = node.value;
+            remove(node);
+            add(node); //removing and adding just to place the node in the front
         }
         return returnValue;
     }
@@ -62,8 +77,8 @@ public class LRUCache {
     public void put(int key, int value) {
         Node node = cache.get(key);
         if (node != null) { // if the node is already present, updating with new value
-            remove(node);
             node.value = value;
+            remove(node);
             add(node); // doing the add will always place the node in the front of the linked list.
             // since this key is touched, keeping it in front by explicitly removing and adding
         } else { // new node, does not already exist in the map/cache

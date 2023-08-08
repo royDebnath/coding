@@ -3,6 +3,9 @@ package com.java.codinground.blind75;
 import com.java.codinground.support.ListNode;
 
 /**
+ * 23. Merge k Sorted Lists
+ * Hard
+ *
  * You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
  *
  * Merge all the linked-lists into one sorted linked-list and return it.
@@ -54,7 +57,7 @@ import com.java.codinground.support.ListNode;
  * Space Complexity
  * We are not using any data structure for intermediate calculations, hence the space complexity would be O(1).
  */
-public class Q9_Merge_K_SortedLists {
+public class X_Q09_Merge_K_SortedLists {
 
     public ListNode mergeKLists(ListNode[] lists) {
         // Base condition

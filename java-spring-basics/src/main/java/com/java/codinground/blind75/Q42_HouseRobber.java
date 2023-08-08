@@ -35,25 +35,33 @@ package com.java.codinground.blind75;
  *
  */
 public class Q42_HouseRobber {
-    public int rob(int[] nums) {
-        int n = nums.length;
-        if( n==1 ){
-            return nums[0];
-        }else if(n == 0){
-            return 0;
-        }else if(n == 2){
-            return Math.max(nums[0],nums[1]);
+    public static void main(String[] args) {
+        System.out.println(rob(new int[]{1,2,3,1}));
+    }
+    public static int rob(int[] nums) {
+        // If we get invalid input, return 0
+        if (nums == null || nums.length == 0) return 0;
+
+        // Keep track of whether we robbed the previous house
+        int robbedPrevious = 0;
+        int didNotRobPrevious = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+
+            // If we don't rob the current house,
+            // take the max of robbing and not robbing the previous house
+            int currentNotRobbed = Math.max(robbedPrevious, didNotRobPrevious);
+
+            // If we rob the current house,
+            // add the current money robbed to what we got from not robbing previous
+            int currentIsRobbed = didNotRobPrevious + nums[i];
+
+            // Update our values for the next iteration
+            didNotRobPrevious = currentNotRobbed;
+            robbedPrevious = currentIsRobbed;
         }
 
-        int dp[] = new int[n];
-        dp[0] = nums[0];
-        dp[1] = nums[1];
-        dp[2] = nums[2] + nums[0];
-        for(int i=3;i<n;i++){
-            dp[i] = Math.max(dp[i-2],dp[i-3]) + nums[i];
-        }
-
-        return Math.max(dp[n-1],dp[n-2]);
-
+        // Return the maximum we could have robbed provided we looked at both options
+        return Math.max(robbedPrevious, didNotRobPrevious);
     }
 }

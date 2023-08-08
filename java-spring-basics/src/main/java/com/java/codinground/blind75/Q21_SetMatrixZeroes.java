@@ -25,7 +25,7 @@ package com.java.codinground.blind75;
 public class Q21_SetMatrixZeroes {
     public static void main(String args[]) {
         //defining an array
-        int[][] matrix = new int[][]{{0, 6, 3, 0},
+        int[][] matrix = new int[][]{{1, 6, 3, 0},
                                      {1, 8, 9, 3},
                                      {6, 2, 0, 7}};
         //finds the length of the matrix

@@ -1,5 +1,5 @@
 package com.java.codinground.blind75
 
 
-class Q34_CloneGraph {
+class X_Q34_CloneGraph {
 }

@@ -1,11 +1,12 @@
 package com.java.codinground.blind75;
 
-import org.javatuples.Pair;
-
 import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * 3. Longest Substring Without Repeating Characters
+ * Medium
+ *
  * Given a string s, find the length of the longest substring without repeating characters.
  * <p>
  * Example 1:
@@ -26,7 +27,7 @@ import java.util.Set;
  * Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
  */
 
-public class Q2_LongestSubstringWithoutRepeatingCharacters {
+public class Q02_LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
 
         System.out.println(lengthOfLongestSubstring("abcdef"));

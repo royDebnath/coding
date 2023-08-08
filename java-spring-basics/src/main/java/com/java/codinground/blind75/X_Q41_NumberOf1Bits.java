@@ -33,5 +33,5 @@ package com.java.codinground.blind75;
  *
  * Follow up: If this function is called many times, how would you optimize it?
  */
-public class Q41_NumberOf1Bits {
+public class X_Q41_NumberOf1Bits {
 }

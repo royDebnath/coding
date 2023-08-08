@@ -15,38 +15,46 @@ package com.java.codinground.blind75;
  *
  */
 public class Q23_WordSearch {
-    public boolean exist(char[][] b, String word) {
+    public static void main(String[] args) {
+
+        char[][] input = {{'A','B','C','E'},
+                          {'S','F','C','S'},
+                          {'A','D','E','E'}};
+
+        System.out.println(exist(input, "ABCCEF"));
+    }
+    public static boolean exist(char[][] board, String word) {
         /*Find word's first letter.  Then call method to check it's surroundings */
-        for (int r = 0; r < b.length; r++)
-            for (int c = 0; c < b[0].length; c++)
-                if (b[r][c] == word.charAt(0) && help(b, word, 0, r, c))
+        for (int row = 0; row < board.length; row++)
+            for (int column = 0; column < board[0].length; column++)
+                if (board[row][column] == word.charAt(0) && help(board, word, 0, row, column))
                     return true;
 
         return false;
     }
 
-    public boolean help(char[][] b, String word, int start, int r, int c) {
+    public static boolean help(char[][] board, String word, int start, int row, int column) {
         /* once we get past word.length, we are done. */
         if (word.length() <= start)
             return true;
 
         /* if off bounds, letter is seen, letter is unequal to word.charAt(start) return false */
-        if (r < 0 || c < 0 || r >= b.length || c >= b[0].length || b[r][c] == '0' || b[r][c] != word.charAt(start))
+        if (row < 0 || column < 0 || row >= board.length || column >= board[0].length || board[row][column] == '0' || board[row][column] != word.charAt(start))
             return false;
 
         /* set this board position to seen. (Because we can use this postion) */
-        char tmp = b[r][c];
-        b[r][c] = '0';
+        char tmp = board[row][column];
+        board[row][column] = '0';
 
         /* recursion on all 4 sides for next letter, if works: return true */
-        if (help(b, word, start + 1, r + 1, c) ||
-                help(b, word, start + 1, r - 1, c) ||
-                help(b, word, start + 1, r, c + 1) ||
-                help(b, word, start + 1, r, c - 1))
+        if (help(board, word, start + 1, row + 1, column) ||
+                help(board, word, start + 1, row - 1, column) ||
+                help(board, word, start + 1, row, column + 1) ||
+                help(board, word, start + 1, row, column - 1))
             return true;
 
         //Set back to unseen
-        b[r][c] = tmp;
+        board[row][column] = tmp;
 
         return false;
     }

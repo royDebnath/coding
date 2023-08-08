@@ -1,6 +1,9 @@
 package com.java.codinground.blind75;
 
 /**
+ * 33. Search in Rotated Sorted Array
+ * Medium
+ *
  * There is an integer array nums sorted in ascending order (with distinct values).
  * Prior to being passed to your function, nums is possibly rotated at an
  * unknown pivot index k (1 <= k < nums.length) such that the resulting array is
@@ -38,7 +41,11 @@ package com.java.codinground.blind75;
  */
 public class Q10_SearchInRotatedSortedArray {
 
-    public int search(int[] nums, int target) {
+    public static void main(String[] args) {
+        System.out.println(search(new int[]{4,5,6,7,0,1,2}, 6));
+    }
+
+    public static int search(int[] nums, int target) {
         // Special case
         if (nums == null || nums.length == 0) {
             return -1;
@@ -62,9 +69,11 @@ public class Q10_SearchInRotatedSortedArray {
                 right = middle;
             }
         }
-        // After the above loop is completed, then the
-        // left index will point to the pivot
+        // After the above loop is completed, then all left,right,middle will point to the same index
+        // which is the pivot. middle is not available outside the loop so can assign either left/right to pivot.
         int pivot = left;
+
+        //search in one of the half
         left = 0;
         right = nums.length - 1;
         // Now we will find in which half of the array,
@@ -74,6 +83,7 @@ public class Q10_SearchInRotatedSortedArray {
         } else {
             right = pivot;
         }
+
         // Now perform normal binary search
         while (left <= right) {
             int middle = left + (right - left) / 2;

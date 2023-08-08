@@ -21,21 +21,38 @@ import java.util.Set;
  * Output: 9
  */
 public class Q33_LongestConsecutiveSequence {
-    public int longestConsecutive(int[] nums) {
+    public static void main(String[] args) {
+        int[] inputs = {0,3,7,2,5,8,4,6,0,1};
+        System.out.println(longestConsecutive(inputs));
+    }
+    public static int longestConsecutive(int[] nums)  {
+        int max = 0;
+
         Set<Integer> set = new HashSet<>();
-        for (int n : nums) {
-            set.add(n);
+        for (int i = 0; i < nums.length; i++) {
+            set.add(nums[i]);
         }
-        int best = 0;
-        for (int n : set) {
-            if (!set.contains(n - 1)) {  // only check for one direction
-                int m = n + 1;
-                while (set.contains(m)) {
-                    m++;
-                }
-                best = Math.max(best, m - n);
+
+        for (int i = 0; i < nums.length; i++) {
+            int count = 1;
+
+            // look left
+            int num = nums[i];
+            while (set.contains(--num)) {
+                count++;
+                set.remove(num);
             }
+
+            // look right
+            num = nums[i];
+            while (set.contains(++num)) {
+                count++;
+                set.remove(num);
+            }
+
+            max = Math.max(max, count);
         }
-        return best;
+
+        return max;
     }
 }

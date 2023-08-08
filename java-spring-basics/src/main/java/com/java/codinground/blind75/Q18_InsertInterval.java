@@ -1,6 +1,7 @@
 package com.java.codinground.blind75;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -26,7 +27,16 @@ import java.util.List;
  *
  */
 public class Q18_InsertInterval {
-    public int[][] insert(int[][] intervals, int[] newInterval) {
+    public static void main(String[] args) {
+
+        int[][] intervals = {{1,2},{3,5},{6,7},{8,10},{12,16}};
+        int[] newInterval = {4,8};
+
+        for (int[] row : insert(intervals, newInterval)) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+    public static int[][] insert(int[][] intervals, int[] newInterval) {
 
         List<int[]> result = new ArrayList<>();
 

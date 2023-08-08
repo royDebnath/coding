@@ -33,7 +33,9 @@ public class Q17_Merge_Intervals {
                         {6, 8},
                         {9, 10}
                 };
-        mergeOverlappingIntervals(intervals);
+        for (int[] row : mergeOverlappingIntervals(intervals)) {
+            System.out.println(Arrays.toString(row));
+        }
     }
 
     private static int[][] mergeOverlappingIntervals(int[][] intervals) {

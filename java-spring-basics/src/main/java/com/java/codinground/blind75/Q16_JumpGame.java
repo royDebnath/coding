@@ -33,9 +33,14 @@ package com.java.codinground.blind75;
  *
  */
 public class Q16_JumpGame {
-    public boolean canJump(int[] nums) {
+    public static void main(String[] args) {
+        int[] input1 = {2,3,1,1,4};
+        int[] input2 = {3,2,1,0,4};
+        System.out.println(canJump(input2));
+    }
+    public static boolean canJump(int[] nums) {
         int lastAccuratePosition=nums.length-1;
-        int furthestJump=0;
+        int furthestJump;
         for(int i=nums.length-2;i>=0;i--) {
             furthestJump=nums[i]+i;
             if(furthestJump>=lastAccuratePosition)

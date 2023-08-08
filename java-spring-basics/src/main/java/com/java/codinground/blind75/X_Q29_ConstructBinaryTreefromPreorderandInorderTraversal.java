@@ -32,7 +32,7 @@ import java.util.Map;
  * numsOnLeft = root - inStart.
  */
 
-class Q29_ConstructBinaryTreefromPreorderandInorderTraversal {
+class X_Q29_ConstructBinaryTreefromPreorderandInorderTraversal {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         Map<Integer, Integer> inMap = new HashMap<Integer, Integer>();
 

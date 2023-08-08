@@ -55,7 +55,7 @@ public class Q11_CombinationSum {
         int[] nums3 = {1, 2};
         int target3 = 3;
 
-        System.out.println(combinationSum(nums3, target3));
+        System.out.println(combinationSum(nums1, target1));
     }
 
     public static List<List<Integer>> combinationSum(int[] input, int target) {
@@ -79,10 +79,12 @@ public class Q11_CombinationSum {
         }
         for (int i = index; i < input.length; i++) {
             // checking that remain does not become negative
-            if ((remain - input[i]) >= 0) {
+            int current = input[i];
+            int currentRemaining = remain - current;
+            if (currentRemaining >= 0) {
                 // adding element which can contribute to remain
-                container.add(input[i]);
-                backtrack(answers, container, input, remain - input[i], i);
+                container.add(current);
+                backtrack(answers, container, input, currentRemaining, i);
                 // removing element from list (backtracking)
                 container.remove(container.size() - 1);
             }

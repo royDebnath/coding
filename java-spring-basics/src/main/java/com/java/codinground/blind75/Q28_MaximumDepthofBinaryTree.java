@@ -11,13 +11,30 @@ import com.java.codinground.support.TreeNode;
  * Input: root = [3,9,20,null,null,15,7]
  * Output: 3
  *
+ * Solution :
+ *
+ * Lets have faith in recursion and assume that we are already given the maximum depth of root's left and right subtrees by recursion.
+ * So to fnd the maximum depth of this binary tree, we will have to take out the maximum of the 2 depths given to us by recursion, and add 1 to that to consider the current level i.e. root's level into our depth.
+ *
+ *
  */
 public class Q28_MaximumDepthofBinaryTree {
-    public int maxDepth(TreeNode root) {
-        if (root == null) return 0;
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(3);
+        root.left= new TreeNode(9);
+        root.right = new TreeNode(20);
+        root.right.left = new TreeNode(15);
+        root.right.right = new TreeNode(7);
+        System.out.println(maxDepth(root));
+    }
 
-        int left = maxDepth(root.left);
-        int right = maxDepth(root.right);
-        return Math.max(left, right) + 1;
+    public static int maxDepth(TreeNode root) {
+        return maxDepth(root, 0);
+    }
+    private static int maxDepth(TreeNode root, int depth){
+        if(root == null) return depth;
+        int leftDepth  = maxDepth(root.left,  depth + 1);
+        int rightDepth = maxDepth(root.right, depth + 1);
+        return Math.max(leftDepth, rightDepth);
     }
 }
