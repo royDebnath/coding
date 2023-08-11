@@ -48,33 +48,35 @@ class Q39_FindMinimumInRotatedSortedArray {
         return findMinBinarySearch(nums, 0, nums.length - 1);
     }
 
-    static int findMinBinarySearch(int nums[], int low, int high) {
+    static int findMinBinarySearch(int nums[], int left, int right) {
         // This condition is needed to handle the case when
         // array is not rotated at all
-        if (high < low)
+        if (right < left)
             return nums[0];
 
         // If there is only one element left
-        if (high == low)
-            return nums[low];
+        if (right == left)
+            return nums[left];
 
         // Find mid
-        int mid = low + (high - low) / 2; /*(low + high)/2;*/
+        int mid = left + (right - left) / 2; /*(left + right)/2;*/
 
         // Check if element (mid+1) is minimum element.
         // Consider the cases like {3, 4, 5, 1, 2}
-        if (mid < high && nums[mid + 1] < nums[mid])
+        if (mid < right && nums[mid] > nums[mid + 1]) // have to check mid<right first as [mid+1] can go out of index bound
             return nums[mid + 1];
 
         // Check if mid itself is minimum element
-        if (mid > low && nums[mid] < nums[mid - 1])
+        if (mid > left && nums[mid] < nums[mid - 1]) // have to check mid>left first as [mid-1] can go out of index bound
             return nums[mid];
 
         // Decide whether we need to go to left half or
         // right half
-        if (nums[high] > nums[mid])
-            return findMinBinarySearch(nums, low, mid - 1);
-        return findMinBinarySearch(nums, mid + 1, high);
+        if (nums[mid] > nums[right]){ // array is decreasing on the right side after mid, so min will be on right side
+            return findMinBinarySearch(nums, mid + 1, right);
+        }else {
+            return findMinBinarySearch(nums, left, mid - 1); // min will be on left
+        }
     }
 }
 

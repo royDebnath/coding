@@ -29,19 +29,19 @@ public class Q30_BestTimetoBuyandSellStock {
         System.out.println(maxProfit(prices));
     }
     public static int maxProfit(int[] prices) {
-        int least_so_far = Integer.MAX_VALUE;
-        int overall_profit = 0; // overall profit
-        int profit_if_sold_today = 0; // profit if sold today
+        int leastSoFar = Integer.MAX_VALUE;
+        int maxProfit = 0; // overall profit
+        int profitIfSoldToday = 0; // profit if sold today
 
         for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < least_so_far) { // if we found new buy value which is smaller than previous one
-                least_so_far = prices[i]; // update our least so far
+            if (prices[i] < leastSoFar) { // if we found new buy value which is smaller than previous one
+                leastSoFar = prices[i]; // update our least so far
             }
-            profit_if_sold_today = prices[i] - least_so_far; // calculating profit if sold today by, Buy - sell
-            if (overall_profit < profit_if_sold_today) { // if profit_if_sold_today is more then our previous overall profit
-                overall_profit = profit_if_sold_today; // update overall profit
+            profitIfSoldToday = prices[i] - leastSoFar; // calculating profit if sold today by, Buy - sell
+            if (maxProfit < profitIfSoldToday) { // if profitIfSoldToday is more then our previous overall profit
+                maxProfit = profitIfSoldToday; // update overall profit
             }
         }
-        return overall_profit; // return overall_profit
+        return maxProfit; // return maxProfit
     }
 }

@@ -25,7 +25,11 @@ package com.java.codinground.blind75;
  * Since an empty string reads the same forward and backward, it is a palindrome.
  */
 public class Q32_ValidPalindrome {
-    public boolean isPalindrome(String s) {
+
+    public static void main(String[] args) {
+        System.out.println(isPalindrome("racecar"));
+    }
+    public static boolean isPalindrome(String s) {
         if (s.isEmpty()) {
             return true;
         }

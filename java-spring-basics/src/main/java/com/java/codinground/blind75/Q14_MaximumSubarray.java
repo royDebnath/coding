@@ -77,22 +77,30 @@ class Q14_MaximumSubarray {
     }
 
     public static int maxSubArray(int[] arr) {
-        int max = arr[0], start = 0, end = 0, mstart = 0, mend = 0, currmax = arr[0];
+
+        int max = arr[0];
+        int start = 0;
+        int end = 0;
+
+        int currentMax = arr[0];
+        int tempStart = 0;
+        int tempEnd = 0;
+
         for (int i = 1; i < arr.length; i++) {
-            if (arr[i] > arr[i] + currmax) {
-                currmax = arr[i];
-                start = i;
-            } else {
-                currmax = currmax + arr[i];
+            currentMax = currentMax + arr[i];
+            if (arr[i] > currentMax) {
+                currentMax = arr[i];
+                tempStart = i;
             }
-            end = i;
-            if (currmax > max) {
-                max = currmax;
-                mstart = start;
-                mend = end;
+            tempEnd = i;
+
+            if (currentMax > max) {
+                max = currentMax;
+                start = tempStart;
+                end = tempEnd;
             }
         }
-        System.out.println("start:" + mstart + " end:" + mend);
+        System.out.println("start : " + start + " end : " + end);
         return max;
     }
 }

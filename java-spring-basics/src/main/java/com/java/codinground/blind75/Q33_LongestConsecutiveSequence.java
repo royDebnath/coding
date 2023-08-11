@@ -37,17 +37,17 @@ public class Q33_LongestConsecutiveSequence {
             int count = 1;
 
             // look left
-            int num = nums[i];
-            while (set.contains(--num)) {
+            int current = nums[i];
+            while (set.contains(--current)) {
                 count++;
-                set.remove(num);
+                set.remove(current);
             }
 
             // look right
-            num = nums[i];
-            while (set.contains(++num)) {
+            current = nums[i];
+            while (set.contains(++current)) {
                 count++;
-                set.remove(num);
+                set.remove(current);
             }
 
             max = Math.max(max, count);

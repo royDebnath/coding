@@ -29,68 +29,48 @@ package com.java.codinground.blind75;
  * Output: 3
  */
 public class Q43_NumberOfIslands {
-    int y;          // The height of the given grid
-    int x;          // The width of the given grid
-    char[][] g;     // The given grid, stored to reduce recursion memory usage
+    public static void main(String[] args) {
+        char[][] grid = {
+                {'1','1','0','0','0'},
+                {'1','1','0','0','0'},
+                {'0','0','1','0','0'},
+                {'0','0','0','1','1'}
+        };
+        System.out.println(numIslands(grid));
 
-    /**
-     * Given a 2d grid map of '1's (land) and '0's (water),
-     * count the number of islands.
-     * <p>
-     * This method approaches the problem as one of depth-first connected
-     * components search
-     *
-     * @param grid, the given grid.
-     * @return the number of islands.
-     */
-    public int numIslands(char[][] grid) {
-        // Store the given grid
-        // This prevents having to make copies during recursion
-        g = grid;
+    }
 
-        // Our count to return
-        int c = 0;
+    public static int numIslands(char[][] grid) {
+        int count = 0;
 
-        // Dimensions of the given graph
-        y = g.length;
-        if (y == 0) return 0;
-        x = g[0].length;
+        int noOfRows = grid.length;
+        int noOfColumns = grid[0].length;
 
-        // Iterate over the entire given grid
-        for (int i = 0; i < y; i++) {
-            for (int j = 0; j < x; j++) {
-                if (g[i][j] == '1') {
-                    dfs(i, j);
-                    c++;
+        for (int row = 0; row < noOfRows; row++) {
+            for (int column = 0; column < noOfColumns; column++) {
+                if (grid[row][column] == '1') {
+                    count++;
+                    clearRestOfLand(grid, row, column);
                 }
             }
         }
-        return c;
+        return count;
     }
 
-    /**
-     * Marks the given site as visited, then checks adjacent sites.
-     * <p>
-     * Or, Marks the given site as water, if land, then checks adjacent sites.
-     * <p>
-     * Or, Given one coordinate (i,j) of an island, obliterates the island
-     * from the given grid, so that it is not counted again.
-     *
-     * @param i, the row index of the given grid
-     * @param j, the column index of the given grid
-     */
-    private void dfs(int i, int j) {
+    private static void clearRestOfLand(char[][] grid, int row, int column) {
+        int noOfRows = grid.length;
+        int noOfColumns = grid[0].length;
 
-        // Check for invalid indices and for sites that aren't land
-        if (i < 0 || i >= y || j < 0 || j >= x || g[i][j] != '1') return;
+        if (row < 0 || column < 0 || row >= noOfRows || column >= noOfColumns // check row,column variables are valid
+                || grid[row][column] == '0') { // means we have reached water and return from this point
+            return;
+        }
 
-        // Mark the site as visited
-        g[i][j] = '0';
+        grid[row][column] = '0'; //mark the land as water so that its not counted again while finding new island
 
-        // Check all adjacent sites
-        dfs(i + 1, j);
-        dfs(i - 1, j);
-        dfs(i, j + 1);
-        dfs(i, j - 1);
+        clearRestOfLand(grid, row+1, column); // check below
+        clearRestOfLand(grid, row-1, column); // check above
+        clearRestOfLand(grid, row, column+1); // check right
+        clearRestOfLand(grid, row, column-1); // check left
     }
 }

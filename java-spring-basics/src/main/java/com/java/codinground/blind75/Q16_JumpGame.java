@@ -21,15 +21,15 @@ package com.java.codinground.blind75;
  * which makes it impossible to reach the last index.
  *
  * Algorithm:
- * 		1). We will maintain a variable lastAccuratePosition from which
+ * 		1). We will maintain a variable targetPosition from which
  * 			we can reach the last position. Since we can reach the last position from
- * 			the last index we initialize lastAccuratePosition with the index of last element (i.e nums.length-1).
+ * 			the last index we initialize targetPosition with the index of last element (i.e nums.length-1).
  * 		2). Now we will start iterating the input array from right (second last position) to the left.
  * 		3). In each iteration we will calculate furthestJump which is the summation of
  * 			index and the value at that index (i.e nums[i]+i).
- * 		4). We will check if furthestJump is greater than or equal to lastAccuratePosition.
- * 		 	If yes, then we will update the value of lastAccuratePosition with the current index.
- * 		5). After the iteration we will check if lastAccuratePosition is zero return true, else return false.
+ * 		4). We will check if furthestJump is greater than or equal to targetPosition.
+ * 		 	If yes, then we will update the value of targetPosition with the current index.
+ * 		5). After the iteration we will check if targetPosition is zero return true, else return false.
  *
  */
 public class Q16_JumpGame {
@@ -38,14 +38,16 @@ public class Q16_JumpGame {
         int[] input2 = {3,2,1,0,4};
         System.out.println(canJump(input2));
     }
+    
     public static boolean canJump(int[] nums) {
-        int lastAccuratePosition=nums.length-1;
-        int furthestJump;
-        for(int i=nums.length-2;i>=0;i--) {
-            furthestJump=nums[i]+i;
-            if(furthestJump>=lastAccuratePosition)
-                lastAccuratePosition=i;
+        int targetPosition=nums.length-1;
+        int secondLast = nums.length - 2;
+        int maxJump;
+        for(int i = secondLast; i>=0; i--) { // backtrack from secondLast to start(i=0)
+            maxJump=nums[i]+i;
+            if(maxJump>=targetPosition) // means targetPosition can be reached from current ith position
+                targetPosition=i; // update target to ith position, i.e backtrack one step
         }
-        return lastAccuratePosition==0;
+        return targetPosition==0; // if at the end of this loop we reach the 0th position i.e start of the array return true
     }
 }

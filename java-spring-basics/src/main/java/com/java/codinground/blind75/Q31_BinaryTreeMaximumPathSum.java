@@ -32,26 +32,31 @@ public class Q31_BinaryTreeMaximumPathSum {
     static int max = Integer.MIN_VALUE;
 
     public static int maxPathSum(TreeNode root) {
-        helper(root);
+        max= root.val;
+        dfs(root);
         return max;
     }
 
 
     /**
-     * this function goes from the bottom of the tree to the top, it's in post-order manner.
+     * this function goes from the bottom of the tree to the top, it's in post-order(left-right-root) manner.
      *
      * At every node, we need to make a decision, if the sum comes from the left path larger than
-     * the right path, we pick the left path and plus the current node's value, this recursion
+     * the right path, we pick the left path/right path and plus the current node's value, this recursion
      * goes all the way up to the root node.
      */
-    static int helper(TreeNode root) {
+    static int dfs(TreeNode root) {
         if (root == null) return 0;
 
-        int left = Math.max(helper(root.left), 0);
-        int right = Math.max(helper(root.right), 0);
+        int leftMax = dfs(root.left);
+        int rightMax = dfs(root.right);
 
-        max = Math.max(max, root.val + left + right);
+        //Handling negetives
+        leftMax = Math.max(leftMax,0);
+        rightMax = Math.max(rightMax,0);
 
-        return root.val + Math.max(left, right);
+        max = Math.max(max, root.val + leftMax + rightMax);
+
+        return root.val + Math.max(leftMax, rightMax); // we can choose either left path or right path which is larger
     }
 }

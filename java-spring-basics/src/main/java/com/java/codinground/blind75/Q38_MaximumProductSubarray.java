@@ -10,6 +10,16 @@ public class Q38_MaximumProductSubarray {
         int[] nums = {2,3,-2,4};
         System.out.println(maxProduct(nums));
     }
+
+    /**
+     *
+     * For each index i keep updating the max and min.
+     * We are also keeping min because on multiplying with any negative number your min will become max
+     * and max will become min. So for every index i we will take
+     * max of (i-th element, prevMax * i-th element)
+     *                      or
+     *        (i-th element, prevMin * i-th element).
+     */
     public static int maxProduct(int[] nums) {
 
         int max, currMax, currMin;
@@ -17,11 +27,13 @@ public class Q38_MaximumProductSubarray {
 
         for (int i=1; i<nums.length; i++) {
 
+            int current = nums[i];
+
             // If num is positive or zero
-            if (nums[i] >= 0) {
+            if (current >= 0) {
                 // Just keep on calculating as it is
-                currMax = Math.max(nums[i] * currMax, nums[i]);
-                currMin = Math.min(nums[i] * currMin, nums[i]);
+                currMax = Math.max(current * currMax, current);
+                currMin = Math.min(current * currMin, current);
 
             }
             // If num is negative
@@ -31,11 +43,11 @@ public class Q38_MaximumProductSubarray {
                 //             & new min has to be calculated with num * currMax
                 // because -ve becomes +ve and +ve becomes -ve i.e min becomes max and max becomes min
 
-                int tempMin = currMin;
-                int tempMax = currMax;
+                int prevMin = currMin;
+                int prevMax = currMax;
 
-                currMax = Math.max(nums[i] * tempMin, nums[i]);
-                currMin = Math.min(nums[i] * tempMax, nums[i]);
+                currMax = Math.max(current * prevMin, current);
+                currMin = Math.min(current * prevMax, current);
             }
 
             max = Math.max(max, currMax);

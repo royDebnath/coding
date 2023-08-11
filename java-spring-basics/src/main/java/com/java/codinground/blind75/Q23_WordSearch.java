@@ -17,44 +17,72 @@ package com.java.codinground.blind75;
 public class Q23_WordSearch {
     public static void main(String[] args) {
 
-        char[][] input = {{'A','B','C','E'},
+        char[][] input = {{'A','B','C','N'},
                           {'S','F','C','S'},
-                          {'A','D','E','E'}};
+                          {'A','D','E','T'}};
 
-        System.out.println(exist(input, "ABCCEF"));
+        System.out.println(exist(input, "CSE"));
     }
     public static boolean exist(char[][] board, String word) {
-        /*Find word's first letter.  Then call method to check it's surroundings */
-        for (int row = 0; row < board.length; row++)
-            for (int column = 0; column < board[0].length; column++)
-                if (board[row][column] == word.charAt(0) && help(board, word, 0, row, column))
-                    return true;
-
+        /*Find word's first letter.  Then call method to check its surroundings */
+        int noOfRows = board.length;
+        int noOfColumns = board[0].length;
+        for (int rowIndex = 0; rowIndex < noOfRows; rowIndex++) {
+            for (int colIndex = 0; colIndex < noOfColumns; colIndex++)
+                if (board[rowIndex][colIndex] == word.charAt(0)) { //If the first character is found call the recursive method to check surroundings to match the word.
+                    if (finder(board, word, 0, rowIndex, colIndex)){// calling the finder with the  position(rowIndex, colIndex) of the first character of the word.
+                        return true;
+                    }
+                }
+        }
         return false;
     }
 
-    public static boolean help(char[][] board, String word, int start, int row, int column) {
+    public static boolean finder(char[][] b, String word, int wordIndex, int rowIndex, int colIndex) {
         /* once we get past word.length, we are done. */
-        if (word.length() <= start)
+        if (wordIndex==word.length())
             return true;
 
-        /* if off bounds, letter is seen, letter is unequal to word.charAt(start) return false */
-        if (row < 0 || column < 0 || row >= board.length || column >= board[0].length || board[row][column] == '0' || board[row][column] != word.charAt(start))
+        char currentCharInWord = word.charAt(wordIndex);
+        int noOfRows = b[0].length;
+        int noOfCols = b.length;
+
+        //check if rowIndex and colIndex are valid
+        if (rowIndex < 0 || colIndex < 0 || rowIndex > noOfCols-1 || colIndex > noOfRows-1) {
+            return false;
+        }
+        /* if off bounds, letter is seen, letter is unequal to word.charAt(wordIndex) return false */
+        char currentCharInBoard = b[rowIndex][colIndex];
+
+        if (currentCharInBoard == '0' || currentCharInBoard != currentCharInWord)
             return false;
 
-        /* set this board position to seen. (Because we can use this postion) */
-        char tmp = board[row][column];
-        board[row][column] = '0';
+        /**
+         * If we reached this point, that means current character is a valid character of the word in the right
+         * sequence in the board. Rigt sequence being horizontally or vertically adjacent that we put in the recursion
+         * logic. We will mark this position in the board as visited.
+         */
+        char tmp = currentCharInBoard; //take backup
+        b[rowIndex][colIndex] = '0'; //mark visited
 
-        /* recursion on all 4 sides for next letter, if works: return true */
-        if (help(board, word, start + 1, row + 1, column) ||
-                help(board, word, start + 1, row - 1, column) ||
-                help(board, word, start + 1, row, column + 1) ||
-                help(board, word, start + 1, row, column - 1))
+
+        /* recursion on all 4 sides for next letter, for the next match till the whole word is found.
+         If the word is not found will return false to the calling exist() function. It will again look
+         for the starting character of the word in the grid and will call this function*/
+        if (finder(b, word, wordIndex + 1, rowIndex + 1, colIndex) || // check the character below
+                finder(b, word, wordIndex + 1, rowIndex - 1, colIndex) || // check the character up
+                finder(b, word, wordIndex + 1, rowIndex, colIndex + 1) || // check the character right
+                finder(b, word, wordIndex + 1, rowIndex, colIndex - 1)){// check the character left
             return true;
+        }
 
-        //Set back to unseen
-        board[row][column] = tmp;
+        /**
+         *Will reach this point when the word is not found even though we found the first
+         * and some consecutive character. In that case it will returned the last 0-set character
+         * to its previous value and the recursion will return to the call from where we started
+         * to check for the adjacent cells.
+         */
+        b[rowIndex][colIndex] = tmp;
 
         return false;
     }
