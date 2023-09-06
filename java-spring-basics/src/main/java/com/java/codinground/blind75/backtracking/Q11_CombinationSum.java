@@ -1,4 +1,4 @@
-package com.java.codinground.blind75.dynamic_programming;
+package com.java.codinground.blind75.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;

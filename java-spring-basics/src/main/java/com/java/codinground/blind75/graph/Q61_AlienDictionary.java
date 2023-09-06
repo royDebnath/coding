@@ -70,8 +70,8 @@ public class Q61_AlienDictionary {
     }
 
     public static String alienOrder(String[] words) {
-        Map<Character, Set<Character>> map = new HashMap<>();
-        Map<Character, Integer> degree = new HashMap<>();
+        Map<Character, Set<Character>> adj = new HashMap<>();
+        Map<Character, Integer> indegree = new HashMap<>();
         String result = "";
         if (words == null || words.length == 0) {
             return result;
@@ -79,7 +79,7 @@ public class Q61_AlienDictionary {
         // Degree char = 0
         for (String s : words) {
             for (char c : s.toCharArray()) {
-                degree.put(c, 0);
+                indegree.put(c, 0);
             }
         }
 
@@ -91,11 +91,11 @@ public class Q61_AlienDictionary {
                 char c1 = curr.charAt(j);
                 char c2 = next.charAt(j);
                 if (c1 != c2) {
-                    Set<Character> set = map.getOrDefault(c1, new HashSet<>());
+                    Set<Character> set = adj.getOrDefault(c1, new HashSet<>());
                     if (!set.contains(c2)) {
                         set.add(c2);
-                        map.put(c1, set);
-                        degree.put(c2, degree.get(c2) + 1); // update c2, c1 < c2
+                        adj.put(c1, set);
+                        indegree.put(c2, indegree.get(c2) + 1); // update c2, c1 < c2
                     }
                     break;
                 }
@@ -103,8 +103,8 @@ public class Q61_AlienDictionary {
         }
 
         LinkedList<Character> q = new LinkedList<>();
-        for (char c : degree.keySet()) {
-            if (degree.get(c) == 0) {
+        for (char c : indegree.keySet()) {
+            if (indegree.get(c) == 0) {
                 q.add(c);
             }
         }
@@ -112,17 +112,17 @@ public class Q61_AlienDictionary {
         while (!q.isEmpty()) {
             char c = q.poll();
             result += c;
-            if (map.containsKey(c)) {
-                for (char next : map.get(c)) {
-                    degree.put(next, degree.get(next) - 1);
-                    if (degree.get(next) == 0) {
+            if (adj.containsKey(c)) {
+                for (char next : adj.get(c)) {
+                    indegree.put(next, indegree.get(next) - 1);
+                    if (indegree.get(next) == 0) {
                         q.offer(next);
                     }
                 }
             }
         }
 
-        return result.length() == degree.size() ? result : "";
+        return result.length() == indegree.size() ? result : "";
     }
 }
 

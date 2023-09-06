@@ -31,5 +31,5 @@ package com.java.codinground.blind75.binary;
  * 5 --> 101
  *
  */
-public class Q67_CountingBits {
+public class X_Q67_CountingBits {
 }

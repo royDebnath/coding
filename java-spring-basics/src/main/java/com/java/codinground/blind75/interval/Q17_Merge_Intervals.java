@@ -39,7 +39,9 @@ public class Q17_Merge_Intervals {
     }
 
     private static int[][] mergeOverlappingIntervals(int[][] intervals) {
-        Arrays.sort(intervals, Comparator.comparingInt(interval -> interval[0])); //sort the intervals by its starting point which is a[0]
+        Arrays.sort(intervals, Comparator.comparingInt(interval -> interval[0]));
+
+        //sort the intervals by its starting point which is a[0]
         List<int[]> result = new ArrayList<>();
         result.add(intervals[0]); //adding the first interval in the result, because it has the smallest start
         int resultEndIndex = 0;

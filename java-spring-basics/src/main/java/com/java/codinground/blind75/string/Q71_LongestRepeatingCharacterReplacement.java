@@ -28,9 +28,17 @@ import java.util.Map;
  *
  * Solution :
  *
- *Key Idea: Adding characters to the window and use the map to track the number of dominant char(meaning the character that counts the most in the window). Expanding the window as wide as it can be until window size - number of dominant character > k which means there are at least k characters are not same as the dominant character, so we need shrink the window from the left side and also update the character count in the map.
+ *Key Idea: Adding characters to the window and use the map to track
+ * the number of dominant char(meaning the character that counts the most in the window).
+ * Expanding the window as wide as it can be until
+ * window size - number of dominant character > k which means
+ * there are at least k characters are not same as the dominant character,
+ * so we need shrink the window from the left side and also update the character count in the map.
  *
- * One key point that causes confusion is when we remove the left side character in the map, the maxRepeat becomes inaccurate. But in this particular case, we do not care about the maxRepeat gets smaller because it won't affect the max window size, we only care about when maxRepeat gets greater.
+ * One key point that causes confusion is when we remove the left side character in the map,
+ * the maxRepeat becomes inaccurate. But in this particular case, we do not care about
+ * the maxRepeat gets smaller because it won't affect the max window size,
+ * we only care about when maxRepeat gets greater.
  *
  */
 public class Q71_LongestRepeatingCharacterReplacement {

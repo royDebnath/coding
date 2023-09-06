@@ -24,7 +24,7 @@ public class BinarySearchTree {
 	
 	
 	/*
-	 * Inorder Traversal
+	 * Inorder Traversal (left -> root -> right)
 	 * 
 	 * In this traversal the left sub tree of the given node is visited first,
 	 * then the value at the given node is printed and then the right sub tree
@@ -39,9 +39,9 @@ public class BinarySearchTree {
 			displayInOrder(root.right);
 		}
 	}
-	
-	/*
-	 * Preorder Traversal
+
+		/*
+	 * Preorder Traversal (root -> left -> right)
 	 * 
 	 * In this traversal the value at the given node is printed first and then
 	 * the left sub tree of the given node is visited and then the right sub
@@ -56,9 +56,9 @@ public class BinarySearchTree {
 			displayPreOrder(root.right);
 		}
 	}
-	
-	/*
-	 * Postorder Traversal
+
+		/*
+	 * Postorder Traversal (left -> right -> root)
 	 * 
 	 * In this traversal the left sub tree of the given node is traversed first,
 	 * then the right sub tree of the given node is traversed and then the value
@@ -101,7 +101,8 @@ public class BinarySearchTree {
 	start from the current and compare root.data with n
 	if current.data is greater than n that means we need to go to the left of the root.
 	if current.data is smaller than n that means we need to go to the right of the root.
-	if any point of time current is null that means we have reached to the leaf node, insert your node here with the help of parent node. (See code)
+	if any point of time current is null that means we have reached to the leaf node,
+	insert your node here with the help of parent node. (See code)
 	*/
 	public void insert(int data){
 		Node newNode = new Node(data);
@@ -128,6 +129,7 @@ public class BinarySearchTree {
 			}
 		}
 	}
+
 
 	/*
 	 * Intution: Use the BST property to search the node and then delete if found the required node.
@@ -190,7 +192,9 @@ Now you have to delete that node whose value is already present in the root...so
 		Node left = mirror(node.left);
 		Node right = mirror(node.right);
 
-		/* swap the left and right pointers */
+		/* when the recursion reaches this point,
+		we are at the end/base of the tree where left and right are leaf nodes
+		swap the left and right pointers */
 		node.left = right;
 		node.right = left;
 
@@ -285,6 +289,15 @@ Now you have to delete that node whose value is already present in the root...so
 		b.displayInOrder(root);
 		System.out.println("\n Delete Node with Two children (10) : " + b.deleteNode(root,10));
 		b.displayInOrder(root);
+
+		BinarySearchTree b1 = new BinarySearchTree();
+		b1.insert(4);
+		b1.insert(1);
+		b1.insert(2);
+		b1.insert(3);
+		b1.displayInOrder(root);
+
+
 	}
 }
 

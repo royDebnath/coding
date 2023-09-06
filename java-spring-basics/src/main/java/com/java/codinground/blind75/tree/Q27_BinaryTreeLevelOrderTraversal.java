@@ -47,7 +47,9 @@ public class Q27_BinaryTreeLevelOrderTraversal {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
+
             int qlen = queue.size(); // nodes in the current level
+
             List<Integer> currentLevelNodes = new ArrayList<>();
             for (int i = 0; i < qlen; i++) { //using qlen instead of queue.size because adding the next level in the queue inside this loop
                 //Process the current level
@@ -58,6 +60,7 @@ public class Q27_BinaryTreeLevelOrderTraversal {
                 if (curr.left != null) queue.add(curr.left); //populating the next level in queue
                 if (curr.right != null) queue.add(curr.right);//populating the next level in queue
             }
+
             ans.add(currentLevelNodes); //after each level processed this will be called
         }
         return ans;

@@ -88,5 +88,17 @@ public class Q59_GraphValidTree {
         }
         return false;
     }
+
+    public boolean hasCycle(int node, boolean[] visited, int parent, List<Integer>[] adj) {
+        visited[node] = true;
+        for (int nextNode : adj[node]) {
+            if ((visited[nextNode] && nextNode!=parent) ||
+                    (!visited[nextNode] && hasCycle(nextNode, visited, node, adj))){
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
 

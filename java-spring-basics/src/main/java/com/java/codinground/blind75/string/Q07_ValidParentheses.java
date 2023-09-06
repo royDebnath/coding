@@ -38,11 +38,11 @@ public class Q07_ValidParentheses {
         if (s.length() % 2 != 0) return false;
         Stack<Character> stack = new Stack();
         for (char bracket : s.toCharArray()) {
-            if (bracket == ']' && !stack.isEmpty() && stack.peek() == '[') {
+            if (!stack.isEmpty() && bracket == ']' && stack.peek() == '[') {
                 stack.pop();
-            } else if (bracket == ')' && !stack.isEmpty() && stack.peek() == '(') {
+            } else if (!stack.isEmpty() && bracket == ')' && stack.peek() == '(') {
                 stack.pop();
-            } else if (bracket == '}' && !stack.isEmpty() && stack.peek() == '{') {
+            } else if (!stack.isEmpty() && bracket == '}' && stack.peek() == '{') {
                 stack.pop();
             } else {
                 stack.push(bracket);

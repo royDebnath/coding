@@ -3,7 +3,9 @@ package com.java.codinground.blind75.tree;
 import com.java.codinground.support.TreeNode;
 
 /**
- * A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
+ * A path in a binary tree is a sequence of nodes where each pair of adjacent nodes
+ * in the sequence has an edge connecting them. A node can only appear in the sequence
+ * at most once. Note that the path does not need to pass through the root.
  *
  * The path sum of a path is the sum of the node's values in the path.
  *
@@ -39,11 +41,13 @@ public class Q31_BinaryTreeMaximumPathSum {
 
 
     /**
-     * this function goes from the bottom of the tree to the top, it's in post-order(left-right-root) manner.
+     * this function goes from the bottom of the tree to the top,
+     * it's in post-order(left-right-root) manner.
      *
-     * At every node, we need to make a decision, if the sum comes from the left path larger than
-     * the right path, we pick the left path/right path and plus the current node's value, this recursion
-     * goes all the way up to the root node.
+     * At every node, we need to make a decision,
+     * if the sum comes from the left path larger than the right path,
+     * we pick the left path/right path and plus the current node's value,
+     * this recursion goes all the way up to the root node.
      */
     static int dfs(TreeNode root) {
         if (root == null) return 0;

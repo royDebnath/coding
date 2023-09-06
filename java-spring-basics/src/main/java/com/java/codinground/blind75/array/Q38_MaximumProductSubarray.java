@@ -16,9 +16,9 @@ public class Q38_MaximumProductSubarray {
      * For each index i keep updating the max and min.
      * We are also keeping min because on multiplying with any negative number your min will become max
      * and max will become min. So for every index i we will take
-     * max of (i-th element, prevMax * i-th element)
+     * max of (i-th element, prevMax * i-th element) -- ith element is +ve
      *                      or
-     *        (i-th element, prevMin * i-th element).
+     *        (i-th element, prevMin * i-th element). --ith element is negetive
      */
     public static int maxProduct(int[] nums) {
 

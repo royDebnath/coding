@@ -88,7 +88,7 @@ class Q14_MaximumSubarray {
 
         for (int i = 1; i < arr.length; i++) {
             currentMax = currentMax + arr[i];
-            if (arr[i] > currentMax) {
+            if (currentMax < arr[i] ) {
                 currentMax = arr[i];
                 tempStart = i;
             }

@@ -9,7 +9,9 @@ import java.util.Queue;
  * 207. Course Schedule
  * Medium
  *
- * There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1. You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take course bi first if you want to take course ai.
+ * There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1.
+ * You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates
+ * that you must take course bi first if you want to take course ai.
  *
  * For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
  * Return true if you can finish all courses. Otherwise, return false.
@@ -97,6 +99,7 @@ public class Q45_CourseSchedule {
         }
 
         Queue<Integer> queue = new LinkedList<>();
+        //build the queue with indegree=0 elements
         for (int i = 0; i < n; i++) {
             if (indegree[i] == 0) { // have to start with courses with indegree 0, i.e courses with no prereq.
                 queue.offer(i);
@@ -116,6 +119,8 @@ public class Q45_CourseSchedule {
                 }
             }
         }
+
+
 
         return ans.size() == n;
     }

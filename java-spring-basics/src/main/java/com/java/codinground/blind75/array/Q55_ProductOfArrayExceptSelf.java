@@ -85,9 +85,25 @@ public class Q55_ProductOfArrayExceptSelf {
         }
         int right = 1;
         for (int i = length - 1; i >= 0; i--) {
-            result[i] *= right;
-            right *= nums[i];
+            result[i] = result[i]*right;
+            right = nums[i]*right;
         }
+        return result;
+    }
+
+    public int[] productExceptSelf22(int[] nums) {
+        int length = nums.length;
+        int[] result = new int[length];
+        result[0] = 1;
+        for (int i =1; i< length;i++ ){
+            result[i] = nums[i-1]*result[i-1];
+        }
+        int right=1;
+        for (int i=length-1; i>=0;i--){
+            result[i] = result[i]*right;
+            right = nums[i]*nums[right];
+        }
+
         return result;
     }
 }

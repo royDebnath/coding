@@ -103,6 +103,97 @@ class Price {
     Price(){
         // Constructor
     }
+
+
+    public class Solution {
+
+/*
+upto a trillion
+
+123 - one hundred and twenty three
+10,234 - ten thousand two hundred and thirty four
+100,500,000 - hundred million five hundred thousand
+*/
+
+        static String convertToString(int a) {
+            // 0-9 : zero,one...
+            //11-19 : eleven ...nineteen
+            // 20, 30 ,40 ... twenty, thirty, forty
+            // 20 - 99 : twenty one ...twenty nine...
+            // 129 -- one hundred ...
+            // 3245 --- three thousand... two hundred
+            // 43245 --- fort three thousand
+            // 343,245 -- 343 thousand...
+            // 5,343,245 -- 5 million 343 thousand 245
+
+            String[] numbers = {"zero","one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "forteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+            numbers[20] = "twenty";
+            numbers[30] = "thirty";
+            numbers[40] = "forty";
+            numbers[50] = "fifty";
+
+
+            String input = Integer.toString(a);
+
+            int length = input.length();
+
+            if(a>=0 && a<99) {
+                return calcZeroTo99(a, numbers);
+
+            }//
+            else if(a>99 && a<999){
+                int thirdDigit = a/100;
+                int twoDigits = a%100;
+                return numbers[thirdDigit] + " " + calcZeroTo99(twoDigits, numbers);
+
+            }
+            else if(a>999 && a<9999){
+
+            }
+
+
+            return input;
+        }
+
+        static String calcZeroTo99(int a, String[] numbers) {
+            if(a < 19){
+                return numbers[a];
+            }
+            else if(a>19 && a<99){
+                int secondDigit = a/10;
+
+                // calcSecondDigit(int digit)
+                if(a%10==0){
+                    return calcSecondDigit(secondDigit, numbers);
+                }
+                else {
+                    int firstDigit = a%10;
+                    return calcSecondDigit(secondDigit, numbers) + " " + firstDigit;
+                }
+
+            }
+
+            return null;
+        }
+
+        static String calcSecondDigit(int secondDigit, String[] numbers) {
+            if(secondDigit==2){
+                return numbers[20];
+            }
+            else if (secondDigit==3){
+                return numbers[secondDigit];
+            }
+            return null;
+        }
+
+
+
+
+        public static void main(String[] args) {
+
+        }
+    }
+
 }
 
 

@@ -44,24 +44,24 @@ public class Q42_HouseRobber {
 
         // Keep track of whether we robbed the previous house
         int robbedPrevious = 0;
-        int didNotRobPrevious = 0;
+        int robbedBeforePrevious = 0;
 
         for (int i = 0; i < nums.length; i++) {
 
             // If we don't rob the current house,
             // take the max of robbing and not robbing the previous house
-            int currentNotRobbed = Math.max(robbedPrevious, didNotRobPrevious);
+            int currentNotRobbed = Math.max(robbedPrevious, robbedBeforePrevious);
 
             // If we rob the current house,
             // add the current money robbed to what we got from not robbing previous
-            int currentIsRobbed = didNotRobPrevious + nums[i];
+            int currentIsRobbed = robbedBeforePrevious + nums[i];
 
             // Update our values for the next iteration
-            didNotRobPrevious = currentNotRobbed;
+            robbedBeforePrevious = currentNotRobbed;
             robbedPrevious = currentIsRobbed;
         }
 
         // Return the maximum we could have robbed provided we looked at both options
-        return Math.max(robbedPrevious, didNotRobPrevious);
+        return Math.max(robbedPrevious, robbedBeforePrevious);
     }
 }
