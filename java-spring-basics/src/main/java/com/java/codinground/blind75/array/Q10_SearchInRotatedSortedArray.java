@@ -33,10 +33,12 @@ package com.java.codinground.blind75.array;
  * The approach is simple if we are able to find the index from where the given array is rotated.
  * We can follow below steps to solve this problem —
  *
- * 1. Find the index where the array is rotated. Notice if a sorted array is rotated then the rightmost element will not be the biggest element in the array.
+ * 1. Find the index where the array is rotated. Notice if a sorted array is rotated then
+ *    the rightmost element will not be the biggest element in the array.
  * 2. Using the information in step #1, we can perform binary search to find the index where the array is rotated.
- * 3. Once we have found that index, then we can easily determine in which half (array will be divided into two halves by the pivot index) of the array the target lies.
- * 4. Notice, the two halves are themselves will be sorted (this is pretty intuitive, right 😄?).
+ * 3. Once we have found that index, then we can easily determine in which half
+ *    (array will be divided into two halves by the pivot index) of the array the target lies.
+ * 4. Notice, the two halves are themselves will be sorted.
  * 5. We can then perform binary search once again in the determined half to find the index of the target element.
  */
 public class Q10_SearchInRotatedSortedArray {
