@@ -1,5 +1,7 @@
 package com.java.codinground.programs.leetcode.top;
 
+import lombok.EqualsAndHashCode;
+
 /**\
  * 647. Palindromic Substrings
  * Medium
@@ -24,6 +26,7 @@ package com.java.codinground.programs.leetcode.top;
  * Explanation: Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
  *
  */
+@EqualsAndHashCode
 public class Q647_PalindromicSubstrings {
     int count =1;
     public int countSubstrings(String s) {
