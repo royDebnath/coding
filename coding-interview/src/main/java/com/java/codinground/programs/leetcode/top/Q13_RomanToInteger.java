@@ -95,34 +95,37 @@ import java.util.Map;
  * After the for loop, the accumulated value in ans represents the integer conversion of the Roman numeral string, and it is returned as the result.
  */
 public class Q13_RomanToInteger {
+    public static int romanToInt(String s) {
+        int length = s.length();
 
-    class Solution {
-        public int romanToInt(String s) {
-            int length = s.length();
+        Map<Character, Integer> map = new HashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
 
-            Map<Character, Integer> map = new HashMap<>();
-            map.put('I', 1);
-            map.put('V', 5);
-            map.put('X', 10);
-            map.put('L', 50);
-            map.put('C', 100);
-            map.put('D', 500);
-            map.put('M', 1000);
-
-            int index = 0, ans = 0;
-            while (index < length - 1) {
-                Integer currentCharValue = map.get(s.charAt(index));
-                Integer nextCharValue = map.get(s.charAt(index + 1));
-                if (currentCharValue < nextCharValue) {
-                    ans -= currentCharValue;
-                } else {
-                    ans += currentCharValue;
-                }
-                index++;
+        int index = 0, ans = 0;
+        while (index < length - 1) {
+            Integer currentCharValue = map.get(s.charAt(index));
+            Integer nextCharValue = map.get(s.charAt(index + 1));
+            if (currentCharValue < nextCharValue) {
+                ans -= currentCharValue;
+            } else {
+                ans += currentCharValue;
             }
-            ans += map.get(s.charAt(index));
-
-            return ans;
+            index++;
         }
+        ans += map.get(s.charAt(index)); // add the last character value
+
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(romanToInt("LVIII"));
+
     }
 }
+

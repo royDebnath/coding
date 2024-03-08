@@ -47,7 +47,42 @@ package com.java.codinground.programs.leetcode.top;
  *
  */
 public class Q55_JumpGame {
+
     public boolean canJump(int[] nums) {
+        if (nums.length==1) return true;
+        if (nums.length==0) return false;
+        int maxReachable = 0;        // Initialize the maximum reach from the current position
+        int lastJumpMaxReach = 0;  // Initialize the maximum reach of the last jump
+
+        // Iterate through the array except for the last element,
+        // because we want to reach the last index, not jump beyond it
+        for (int i = 0; i < nums.length - 1; ++i) {
+            // Update the maximum reach by taking the maximum between the current maxReachable
+            // and the position we could reach from the current index (i + nums[i])
+            maxReachable = Math.max(maxReachable, i + nums[i]);
+
+            // If the current index reaches the last jump's maximum reach,
+            // it means we have to make another jump to proceed further
+            if (lastJumpMaxReach == i) {
+                lastJumpMaxReach = maxReachable;  // Update the last jump's max reach to the current maxReachable
+                // There's no need to continue if the maximum reach is already beyond the last index,
+                // as we are guaranteed to end the loop
+                if (maxReachable >= nums.length - 1) {
+                    return true;
+                }
+            }
+
+            if (lastJumpMaxReach < i){
+                return false;
+            }
+        }
+
+        // Return the minimum number of jumps needed to reach the last index
+        return false;
+    }
+
+
+    public boolean canJump2(int[] nums) {
         int maxReachable = 0; // Initialize the maximum reachable index to 0
 
         // Iterate over each index in the array

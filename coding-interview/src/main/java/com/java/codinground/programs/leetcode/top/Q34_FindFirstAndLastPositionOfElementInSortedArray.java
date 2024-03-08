@@ -4,7 +4,8 @@ package com.java.codinground.programs.leetcode.top;
  * Medium
  * Topics
  * Companies
- * Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+ * Given an array of integers nums sorted in non-decreasing order,
+ * find the starting and ending position of a given target value.
  * <p>
  * If target is not found in the array, return [-1, -1].
  * <p>
@@ -38,28 +39,28 @@ public class Q34_FindFirstAndLastPositionOfElementInSortedArray {
     public int findPosition(int[] nums, int target, String position) {
 
         int result = -1;
-        int low = 0;
-        int high = nums.length - 1;
+        int left = 0;
+        int right = nums.length - 1;
 
-        while (low <= high) {
-            int mid = low + ((high - low) / 2);
+        while (left <= right) {
+            int mid = left + ((right - left) / 2);
 
             if (nums[mid] < target) {
-                low = mid + 1;
+                left = mid + 1;
             } else if (nums[mid] > target) {
-                high = mid - 1;
+                right = mid - 1;
             } else { // nums[mid] == target
                 result = mid;
 
                 if ("first".equals(position)) {
-                    high = mid - 1;
+                    right = mid - 1;
                     // because nothing after mid
                     // can be the first occurance of target.
                     //maybe mid is the first occurance , maybe not
                     //so let's narrow the target for [0...mid-1] and find out
                 }
                 if ("last".equals(position)) {
-                    low = mid + 1;
+                    left = mid + 1;
                     // because nothing before mid
                     // can be the last occurance of target.
                     //maybe mid is the last occurance , maybe not

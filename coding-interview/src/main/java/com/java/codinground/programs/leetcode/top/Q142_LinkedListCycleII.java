@@ -20,13 +20,24 @@ import com.java.codinground.support.ListNode;
  * A linked list cycle is conceptually akin to a running track, where the entry point of the cycle is the "gate" to the track, and the cycle itself is the loop. Our goal is to figure out where this "gate" is located within the list.
  *
  * Intuition
- * To resolve the problem of finding out the cycle’s starting point, we can use the two-pointer technique, which is efficient and doesn't require extra memory for storage.
+ * To resolve the problem of finding out the cycle’s starting point, we can use the two-pointer technique,
+ * which is efficient and doesn't require extra memory for storage.
  *
- * The intuition behind this algorithm involves a faster runner (the fast pointer) and a slower runner (the slow pointer), both starting at the head of the linked list. The fast pointer moves two steps at a time while the slow pointer moves only one. If a cycle exists, the fast pointer will eventually lap the slow pointer within the cycle, indicating that a cycle is present.
+ * The intuition behind this algorithm involves a faster runner (the fast pointer) and
+ * a slower runner (the slow pointer), both starting at the head of the linked list.
+ * The fast pointer moves two steps at a time while the slow pointer moves only one.
+ * If a cycle exists, the fast pointer will eventually lap the slow pointer within the cycle,
+ * indicating that a cycle is present.
  *
- * Once they meet, we can find the start of the cycle. To do this, we set up another pointer, called ans, at the head of the list and move it at the same pace as the slow pointer. The place where ans and the slow pointer meet again will be the starting node of the cycle.
+ * Once they meet, we can find the start of the cycle.
+ * To do this, we set up another pointer, called ans, at the head of the list and move it
+ * at the same pace as the slow pointer.
+ * The place where ans and the slow pointer meet again will be the starting node of the cycle.
  *
- * Why does this work? If we consider that the distance from the list head to the cycle entrance is x, and the distance from the entrance to the meeting point is y, with the remaining distance back to the entrance being z, we can make an equation. Since the fast pointer travels the distance of x + y + n * (y + z) (where n is the number of laps made) and slow travels x + y, and fast is twice as fast as slow, then we can deduce that x = n * (y + z) - y, which simplifies to x = (n - 1) * (y + z) + z. This shows that starting a pointer at the head (x distance to the entrance) and one at the meeting point (z distance to the entrance) and moving them at the same speed will cause them to meet exactly at the entrance of the cycle.
+ * Why does this work? If we consider that the distance from the list head to the cycle entrance is x,
+ * and the distance from the entrance to the meeting point is y,
+ * with the remaining distance back to the entrance being z, we can make an equation.
+ * Since the fast pointer travels the distance of x + y + n * (y + z) (where n is the number of laps made) and slow travels x + y, and fast is twice as fast as slow, then we can deduce that x = n * (y + z) - y, which simplifies to x = (n - 1) * (y + z) + z. This shows that starting a pointer at the head (x distance to the entrance) and one at the meeting point (z distance to the entrance) and moving them at the same speed will cause them to meet exactly at the entrance of the cycle.
  *
  * Solution Approach
  * In this solution, we use the two-pointer technique, which involves having two iterators moving through the linked list at different speeds: slow and fast. slow moves one node at a time, while fast moves two nodes at a time.
@@ -55,14 +66,16 @@ import com.java.codinground.support.ListNode;
  * Example Walkthrough
  * Let's consider a simple linked list example to walk through the solution approach:
  *
- * Suppose we have the linked list 1 -> 2 -> 3 -> 4 -> 5 -> 2 (the last node points back to the second one, creating a cycle). Here, the node with the value 2 is the start of the cycle.
+ * Suppose we have the linked list 1 -> 2 -> 3 -> 4 -> 5 -> 2 (the last node points back to the second one,
+ * creating a cycle). Here, the node with the value 2 is the start of the cycle.
  *
  * Detecting the cycle:
  *
  * Initially, both slow and fast pointers are at the head of the list (node with value 1).
  * Move slow to the next node (2) and fast two nodes forward (3).
  * Move slow to the next node (3) and fast two nodes forward (5).
- * Continue this process until fast and slow meet. In our case, after few iterations, fast and slow both point to one of the nodes inside the cycle (let's say they meet at node with value 4).
+ * Continue this process until fast and slow meet. In our case, after few iterations,
+ * fast and slow both point to one of the nodes inside the cycle (let's say they meet at node with value 4).
  * Finding the cycle starting node:
  *
  * Place the ans pointer at the head of the list (node with value 1).

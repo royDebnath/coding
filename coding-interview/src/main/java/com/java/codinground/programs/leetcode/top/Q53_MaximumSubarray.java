@@ -1,7 +1,8 @@
 package com.java.codinground.programs.leetcode.top;
 
 /**
- * Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+ * Given an integer array nums, find the contiguous subarray (containing at least one number)
+ * which has the largest sum and return its sum.
  * <p>
  * A subarray is a contiguous part of an array.
  * <p>
@@ -32,24 +33,7 @@ public class Q53_MaximumSubarray {
         System.out.println(maxSubArray(input1));
     }
 
-    private static int maxSumSubarray(int[] input) {
-        int sum = 0;
-        int max = Integer.MIN_VALUE;
-        for (int i = 0; i < input.length; i++) {
-            sum = sum + input[i];
-            max = Math.max(sum, max);
 
-            if (sum < 0) sum = 0;
-            /**
-             by initializing the sum back to zero when -ve is faced,
-             we are starting fresh from the next element because -ve will only make the sum less.
-             In case of -2, 1, -3 ....
-             when 1 is encountered if we did not reset sum to 0 new sum = sum + input[i] will evaluate to -2+1=-1,
-             where as we can start from index 1 and max sum will be 1
-             **/
-        }
-        return max;
-    }
 
     private static int maxSubArray(int[] arr){
 
@@ -58,22 +42,22 @@ public class Q53_MaximumSubarray {
         int end = 0;
 
         int currentMax = arr[0];
-        int tempStart = 0;
-        int tempEnd = 0;
+        int currentStart = 0;
+        int currentEnd = 0;
 
         for (int i = 1; i < arr.length; i++) {
-            tempEnd = i;
+            currentEnd = i;
             currentMax = currentMax + arr[i];
 
-            if (currentMax < arr[i] ) {
+            if (currentMax < arr[i] ) { // previous sum is negative, so start fresh from current
                 currentMax = arr[i];
-                tempStart = i; // start is only changed when the previous max is bringing down the current max
+                currentStart = i; // start is only changed when the previous max is bringing down the current max
             }
 
             if (currentMax > max) {
                 max = currentMax;
-                start = tempStart;
-                end = tempEnd;
+                start = currentStart;
+                end = currentEnd;
             }
         }
         System.out.println("start : " + start + " end : " + end);
@@ -185,4 +169,24 @@ public class Q53_MaximumSubarray {
      * The given code snippet consists of a single loop that iterates through the list nums. The loop starts from the second element and goes till the last element, performing constant time operations in each iteration. The max function is also O(1). Therefore, the time complexity is O(n), where n is the number of elements in the input list nums.
      *
      */
+
+    // additional
+    private static int maxSumSubarray(int[] input) {
+        int sum = 0;
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < input.length; i++) {
+            sum = sum + input[i];
+            max = Math.max(sum, max);
+
+            if (sum < 0) sum = 0;
+            /**
+             by initializing the sum back to zero when -ve is faced,
+             we are starting fresh from the next element because -ve will only make the sum less.
+             In case of -2, 1, -3 ....
+             when 1 is encountered if we did not reset sum to 0 new sum = sum + input[i] will evaluate to -2+1=-1,
+             where as we can start from index 1 and max sum will be 1
+             **/
+        }
+        return max;
+    }
 }

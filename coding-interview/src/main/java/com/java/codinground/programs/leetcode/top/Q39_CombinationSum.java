@@ -33,8 +33,8 @@ import java.util.List;
  *
  * Generally, in problems such as this, we are required to use backtracking.
  * Because in such questions we are required to do a complete search and find the answer.
- * So first, we sort the list of integers that is given to us.
- * Afterward, we create a recursive function that keeps on adding an integer to the current temporary list of integers
+ * we create a recursive function that keeps on adding an integer to the
+ * current temporary list of integers
  * and keeping track of the remaining sum required to add up to the given target.
  * So inside the recursive function, we keep two base cases.
  * The first base case is to check if the remaining sum required goes negative.(not present)
@@ -45,6 +45,8 @@ import java.util.List;
  *
  */
 public class Q39_CombinationSum {
+    List<List<Integer>> answers = new ArrayList<>();
+
     public static void main(String[] args) {
         int[] nums1 = {2, 3, 6, 7};
         int target1 = 7;
@@ -54,39 +56,36 @@ public class Q39_CombinationSum {
 
         int[] nums3 = {1, 2};
         int target3 = 3;
-
-        System.out.println(combinationSum(nums1, target1));
+        Q39_CombinationSum app = new Q39_CombinationSum();
+        System.out.println(app.combinationSum(nums1, target1));
     }
 
-    public static List<List<Integer>> combinationSum(int[] input, int target) {
+    public List<List<Integer>> combinationSum(int[] input, int target) {
         // answers will contain the combinations
-        List<List<Integer>> answers = new ArrayList<>();
 
         // Container will temporarily contain the members of the input and as we traverse
-        // the array will check if sum of the container is target
-        ArrayList<Integer> container = new ArrayList<>();
-        backtrack(answers, container, input, target, 0);
+        // the array will check if sum of the currentCombination is target
+        ArrayList<Integer> currentCombination = new ArrayList<>();
+        backtrack(input, target, currentCombination, 0);
         return answers;
     }
 
-    private static void backtrack(List<List<Integer>> answers, ArrayList<Integer> container,
-                                  int[] input, int remain, int index
-    ) {
+    private void backtrack(int[] input, int remain, ArrayList<Integer> currentCombination, int index) {
         if (remain == 0) {
             // Adding deep copy of list to answers
-            answers.add(new ArrayList<>(container));
+            answers.add(new ArrayList<>(currentCombination));
             return;
         }
         for (int i = index; i < input.length; i++) {
             // checking that remain does not become negative
             int current = input[i];
             int currentRemaining = remain - current;
-            if (currentRemaining >= 0) {
+            if (currentRemaining >= 0) { // in case of currentRemaining negetive, element will be skipped
                 // adding element which can contribute to remain
-                container.add(current);
-                backtrack(answers, container, input, currentRemaining, i);
+                currentCombination.add(current);
+                backtrack(input, currentRemaining, currentCombination, i); // calling with same index i not i+1 because same number can be used twice
                 // removing element from list (backtracking)
-                container.remove(container.size() - 1);
+                currentCombination.remove(currentCombination.size() - 1);
             }
         }
     }

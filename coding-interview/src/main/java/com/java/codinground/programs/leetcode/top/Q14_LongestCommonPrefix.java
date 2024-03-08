@@ -30,14 +30,27 @@ package com.java.codinground.programs.leetcode.top;
 
 
 public class Q14_LongestCommonPrefix {
-    public String longestCommonPrefix(String[] strs) {
+    public static String longestCommonPrefix(String[] strs) {
         String prefix = strs[0];
         for(int index=1;index<strs.length;index++){
             while(strs[index].indexOf(prefix) != 0){
-                prefix=prefix.substring(0,prefix.length()-1);
+                /**
+                 * "flower".indexOf("fl") is 0
+                 * "flower".indexOf("") is 0
+                 * "flower".indexOf("flow") is -1 // for this case we keep chopping to find a match
+                 * "flower".indexOf("tux") is -1
+                 */
+                prefix=prefix.substring(0,prefix.length()-1); // if the prefix is longer than the current word
+                /** if there is nothing common from the start prefix will be eventually chopped to null and indexOf will return 0*/
             }
         }
         return prefix;
+    }
+
+    public static void main(String[] args) {
+        String[] input = new String[]{"flower","flow","flight"};
+        System.out.println(longestCommonPrefix(input));
+        System.out.println("flower".indexOf("flv"));
     }
 }
 

@@ -2,7 +2,8 @@ package com.java.codinground.programs.leetcode.top;
 
 /**
  * Problem Description
- * The problem presents us with a singly linked list and requires us to sort it in ascending order. A singly linked list is a data structure where each node contains a value and a reference (or a pointer) to the next node. The head of the linked list is the first node, and this is the only reference to the linked list that is provided. The challenge is to rearrange the nodes such that their values are in ascending order from the head to the end of the list. Sorting linked lists is a bit tricky since, unlike arrays, we don't have direct access to the nodes based on index and we cannot use traditional indexing methods.
+ * The problem presents us with a singly linked list and requires us to sort it in ascending order.
+ * A singly linked list is a data structure where each node contains a value and a reference (or a pointer) to the next node. The head of the linked list is the first node, and this is the only reference to the linked list that is provided. The challenge is to rearrange the nodes such that their values are in ascending order from the head to the end of the list. Sorting linked lists is a bit tricky since, unlike arrays, we don't have direct access to the nodes based on index and we cannot use traditional indexing methods.
  *
  * Intuition
  * The given solution uses a divide and conquer strategy. Specifically, it uses the merge sort algorithm adapted for linked lists. Here's the intuition behind this approach:

@@ -40,6 +40,60 @@ public class Q57_InsertInterval {
             System.out.println(Arrays.toString(row));
         }
     }
+
+    public static int[][] insertInterval(int[][] intervals, int[] newInterval) {
+        // Read the starting and ending time of the new interval into separate variables
+        int newStart = newInterval[0];
+        int newEnd = newInterval[1];
+
+        // Initialize variables to help in iterating over the existing intervals list
+        int currentIndexIntervals = 0;
+        int length = intervals.length;
+
+        // Initialize an empty list to store the result
+        List<int[]> result = new ArrayList<>();
+
+        /**Traverse to the point where new interval can be added*/
+        // Append all intervals that start before the new interval to the result list
+        while (currentIndexIntervals < length && intervals[currentIndexIntervals][0] < newStart) {
+            result.add(intervals[currentIndexIntervals]);
+            currentIndexIntervals++;
+        }
+
+
+        /**Add the new interval*/
+        int lastIndexInOutput = result.size() - 1;
+        // just append the new interval to the result list.
+        if (result.size() == 0) { // no interval that started before newInterval, so newInterval is the first interval. add it.
+            result.add(newInterval);
+        } else {
+            int[] resultLastInterval = result.get(lastIndexInOutput);
+            if (resultLastInterval[1] < newStart) { // If the new interval starts after the end of the last interval appended to the result list
+                result.add(newInterval);
+            } else { // Otherwise, overlap, merge the two intervals
+                resultLastInterval[1] = Math.max(resultLastInterval[1], newEnd);
+            }
+        }
+
+
+        // calculate again as result size has changed
+        // Copy any remaining intervals to the result list,
+        // similarly merging any overlapping intervals as we go
+        while (currentIndexIntervals < length) {
+            int[] slot = intervals[currentIndexIntervals];
+            int start = slot[0];
+            int end = slot[1];
+            int[] resultLastInterval = result.get( result.size() - 1);
+            if (resultLastInterval[1] < start) {
+                result.add(slot);
+            } else {
+                resultLastInterval[1] = Math.max(resultLastInterval[1], end);
+            }
+            currentIndexIntervals++;
+        }
+        return result.toArray(new int[result.size()][]);
+    }
+
     public static int[][] insert(int[][] intervals, int[] newInterval) {
 
         List<int[]> result = new ArrayList<>();
@@ -78,53 +132,5 @@ public class Q57_InsertInterval {
 
         // convert to int[][] array
         return result.toArray(new int[result.size()][]);
-    }
-
-    public static int[][] insertInterval(int[][] intervals, int[] newInterval) {
-        // Read the starting and ending time of the new interval into separate variables
-        int newStart = newInterval[0];
-        int newEnd = newInterval[1];
-
-        // Initialize variables to help in iterating over the existing intervals list
-        int i = 0;
-        int length = intervals.length;
-
-        // Initialize an empty list to store the output
-        List<int[]> output = new ArrayList<>();
-
-        // Append all intervals that start before the new interval to the output list
-        while (i < length && intervals[i][0] < newStart) {
-                output.add(intervals[i]);
-            i++;
-        }
-
-        int lastIndex = output.size() - 1;
-        // just append the new interval to the output list.
-        if (output.size() == 0) { // no interval that started before newInterval, so newInterval is the first interval. add it.
-            output.add(newInterval);
-        } else {
-            if (output.get(lastIndex)[1] < newStart) { // If the new interval starts after the end of the last interval appended to the output list
-                output.add(newInterval);
-            } else { // Otherwise, overlap, merge the two intervals
-                output.get(lastIndex)[1] = Math.max(output.get(lastIndex)[1], newEnd);
-            }
-        }
-
-
-        lastIndex = output.size() - 1; // calculate again as output size has changed
-        // Copy any remaining intervals to the output list,
-        // similarly merging any overlapping intervals as we go
-        while (i < length) {
-            int[] slot = intervals[i];
-            int start = slot[0];
-            int end = slot[1];
-            if (output.get(lastIndex)[1] < start) {
-                output.add(slot);
-            } else {
-                output.get(lastIndex)[1] = Math.max(output.get(lastIndex)[1], end);
-            }
-            i++;
-        }
-        return output.toArray(new int[output.size()][]);
     }
 }

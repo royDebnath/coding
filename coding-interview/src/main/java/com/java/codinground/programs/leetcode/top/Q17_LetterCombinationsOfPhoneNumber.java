@@ -79,7 +79,7 @@ public class Q17_LetterCombinationsOfPhoneNumber {
         char currentDigit = digits.charAt(currentIndex);
         String letterOptions = digitToLetters.get(currentDigit);
 
-        if (letterOptions != null) {
+        if (letterOptions != null) { // for 0, 1 its null
             for (int i = 0; i < letterOptions.length(); i++) {
                 char letter = letterOptions.charAt(i);
                 currentCombination.append(letter);
