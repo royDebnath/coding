@@ -2,6 +2,8 @@ package com.java.codinground.programs.leetcode.top;
 
 import com.java.codinground.support.TreeNode;
 
+import java.util.List;
+
 /**
  * The inorder traversal of BST gives the sorted order of nodes.
  * Will use this concept to find the kth smallest.
@@ -40,7 +42,7 @@ class KthSmallestElementBST {
     }
 
     public void inOrder(TreeNode root, int k) {
-        if (root != null) {
+        if (root == null) return;
             inOrder(root.left, k);
             count++;
             if (count == k) {
@@ -48,7 +50,28 @@ class KthSmallestElementBST {
                 return;
             }
             inOrder(root.right, k);
+    }
+
+    //Inorder traversal for reference
+    public void inorder(TreeNode root, List<Integer> nums) {
+        if (root == null) return;
+        inorder(root.left, nums);
+        nums.add(root.val);
+        inorder(root.right, nums);
+    }
+
+    //Kth largest element using reverse inorder
+    private void reverseInorder(TreeNode root, int k) {
+        if (root == null) {
+            return;
         }
+        reverseInorder(root.right, k);
+        count++;
+        if (count == k) {
+            result = root.val;
+            return;
+        }
+        reverseInorder(root.left, k);
     }
 }
 

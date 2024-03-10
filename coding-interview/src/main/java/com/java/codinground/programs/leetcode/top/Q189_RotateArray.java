@@ -2,10 +2,24 @@ package com.java.codinground.programs.leetcode.top;
 
 /**
  * Problem Description
- * In this problem, we are given an array of integers named nums. The goal is to rotate the elements of the array to the right by k steps. When we rotate the array, every element moves k places to the right, and the elements at the end of the array wrap around to the beginning. For example, if the array is [1, 2, 3, 4, 5] and k is 2, the rotated array will be [4, 5, 1, 2, 3]. It is important to note that k is non-negative, which means rotating by k steps always moves elements to the right, and may be larger than the length of the array.
+ * In this problem, we are given an array of integers named nums.
+ *
+ * The goal is to rotate the elements of the array to the right by k steps.
+ * When we rotate the array, every element moves k places to the right,
+ * and the elements at the end of the array wrap around to the beginning.
+ * For example, if the array is [1, 2, 3, 4, 5]
+ * and k is 2,
+ * the rotated array will be [4, 5, 1, 2, 3]. It is important to note that k is non-negative,
+ * which means rotating by k steps always moves elements to the right, and may be larger than
+ * the length of the array.
  *
  * Intuition
- * The key to approaching this problem is to understand that rotating an array by k steps to the right is equivalent to taking the last k elements and moving them to the front, while shifting the remaining elements to make space. However, if k is larger than the length of the array, rotating the array k times would effectively be the same as rotating it k % len(nums) times since every len(nums) rotations, the array returns to its original configuration.
+ * The key to approaching this problem is to understand that rotating an array by k steps
+ * to the right is equivalent to taking the last k elements and moving them to the front,
+ * while shifting the remaining elements to make space.
+ * However, if k is larger than the length of the array, rotating the array k times
+ * would effectively be the same as rotating it k % len(nums) times since every len(nums) rotations,
+ * the array returns to its original configuration.
  *
  * To optimize the array rotation, we can follow a three-step reversal strategy which essentially achieves the rotation without additional storage for the displaced elements:
  *
@@ -64,22 +78,22 @@ public class Q189_RotateArray {
 
     /**
      * Reverses elements in the array between indices i and j.
-     * @param i Starting index for reversal.
-     * @param j Ending index for reversal.
+     * @param left Starting index for reversal.
+     * @param right Ending index for reversal.
      */
-    private void reverse(int i, int j) {
+    private void reverse(int left, int right) {
         // Using two pointers approach, swap elements until pointers meet or cross
-        while (i < j) {
+        while (left < right) {
             // Temporary variable to hold a value during the swap
-            int temp = nums[i];
+            int temp = nums[left];
 
             // Perform swap
-            nums[i] = nums[j];
-            nums[j] = temp;
+            nums[left] = nums[right];
+            nums[right] = temp;
 
             // Move pointers towards each other
-            ++i;
-            --j;
+            ++left;
+            --right;
         }
     }
 }

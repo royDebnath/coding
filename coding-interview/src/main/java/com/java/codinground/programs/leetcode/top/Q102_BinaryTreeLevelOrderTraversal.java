@@ -2,10 +2,7 @@ package com.java.codinground.programs.leetcode.top;
 
 import com.java.codinground.support.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Given the root of a binary tree, return the level order traversal of its nodes' values.
@@ -25,7 +22,8 @@ import java.util.Queue;
  * At the beginning of the outer loop, we capture the queue length,
  * which will tell us how long the row is. Then we can iterate through that many nodes,
  * popping them off the queue's front one at a time, then process any end-of-row instructions.
- * In the case of this problem, that will mean pushing the current row array (row) onto our answer array (ans).
+ * In the case of this problem, that will mean
+ * pushing the current row array (row) onto our answer array (ans).
  *
  * We'll continue this process until the queue is empty, at which point we will have reached the end
  * of the binary tree, and can return ans.
@@ -40,31 +38,24 @@ public class Q102_BinaryTreeLevelOrderTraversal {
         root.right = new TreeNode(20);
         root.right.left = new TreeNode(15);
         root.right.right = new TreeNode(7);
-        for (List<Integer> integers : levelOrder(root)) {
-            System.out.print(integers.toString());
-        }
+
+        System.out.println(rightSideView(root).toString());
     }
-    public static List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> ans = new ArrayList<>();
+    public static List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
         if (root == null) return ans;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
+        Deque<TreeNode> deque = new ArrayDeque<>(); // have to take Deque here to get last element
+        deque.offer(root);
+        while (!deque.isEmpty()) {
+            ans.add(deque.peekLast().val);
 
-            int qlen = queue.size(); // nodes in the current level
-
-            List<Integer> currentLevelNodes = new ArrayList<>();
-            for (int i = 0; i < qlen; i++) { //using qlen instead of queue.size because adding the next level in the queue inside this loop
-                //Process the current level
-                TreeNode curr = queue.poll();
-                currentLevelNodes.add(curr.val);
-
-                //prepare the next level by adding the next level in queue
-                if (curr.left != null) queue.add(curr.left); //populating the next level in queue
-                if (curr.right != null) queue.add(curr.right);//populating the next level in queue
+            //Add the next level of nodes in the queue
+            int qlen = deque.size(); // nodes in the current level
+            for (int i = 0; i < qlen; i++) { //using qlen instead of deque.size because adding the next level in the deque inside this loop
+                TreeNode curr = deque.poll();
+                if (curr.left != null) deque.add(curr.left); //populating the next level in deque
+                if (curr.right != null) deque.add(curr.right);//populating the next level in deque
             }
-
-            ans.add(currentLevelNodes); //after each level processed this will be called
         }
         return ans;
     }

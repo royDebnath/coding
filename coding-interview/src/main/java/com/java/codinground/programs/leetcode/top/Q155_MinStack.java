@@ -4,10 +4,13 @@ public class Q155_MinStack {
     private Node top;
 
     public void push(int x) {
-        if (top == null)
+        if (top == null) {
             top = new Node(x, x, null);
-        else
-            top = new Node(x, Math.min(x, top.min), top);
+        }
+        else {
+            Node previousTop = top;
+            top = new Node(x, Math.min(x, top.min), previousTop);
+        }
     }
 
     public void pop() {

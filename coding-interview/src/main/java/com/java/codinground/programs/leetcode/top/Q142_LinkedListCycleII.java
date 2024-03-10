@@ -12,12 +12,10 @@ import com.java.codinground.support.ListNode;
  * tail's next pointer is connected to (0-indexed).
  * It is -1 if there is no cycle. Note that pos is not passed as a parameter.
  *
- * Do not modify the linked list.
- *
- * Problem Description
- * The problem presents a linked list and asks us to determine where a cycle begins within it. A cycle in a linked list happens when a node's next reference points back to a previous node in the list, causing a portion of the list to be traversed endlessly. We are given the head of the linked list, and we must find the node at which this cycle starts. If there is no cycle, our function should return null.
- *
- * A linked list cycle is conceptually akin to a running track, where the entry point of the cycle is the "gate" to the track, and the cycle itself is the loop. Our goal is to figure out where this "gate" is located within the list.
+ * A linked list cycle is conceptually akin to a running track,
+ * where the entry point of the cycle is the "gate" to the track,
+ * and the cycle itself is the loop. Our goal is to figure out where this "gate" is located
+ * within the list.
  *
  * Intuition
  * To resolve the problem of finding out the cycle’s starting point, we can use the two-pointer technique,
@@ -34,9 +32,10 @@ import com.java.codinground.support.ListNode;
  * at the same pace as the slow pointer.
  * The place where ans and the slow pointer meet again will be the starting node of the cycle.
  *
- * Why does this work? If we consider that the distance from the list head to the cycle entrance is x,
- * and the distance from the entrance to the meeting point is y,
- * with the remaining distance back to the entrance being z, we can make an equation.
+ * Why does this work? If we consider that the distance from the list head to the cycle-entrance is x,
+ * and the distance from the cycle-entrance to the meeting point is y,
+ * with the remaining distance back to the cycle- entrance being z, we can make an equation.
+ *
  * Since the fast pointer travels the distance of x + y + n * (y + z) (where n is the number of laps made) and slow travels x + y, and fast is twice as fast as slow, then we can deduce that x = n * (y + z) - y, which simplifies to x = (n - 1) * (y + z) + z. This shows that starting a pointer at the head (x distance to the entrance) and one at the meeting point (z distance to the entrance) and moving them at the same speed will cause them to meet exactly at the entrance of the cycle.
  *
  * Solution Approach

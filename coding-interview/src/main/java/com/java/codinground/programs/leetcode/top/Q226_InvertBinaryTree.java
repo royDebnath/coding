@@ -89,13 +89,17 @@ public class Q226_InvertBinaryTree {
         }
 
         // Swap the left and right children of the current node
-        TreeNode tempNode = node.left;
-        node.left = node.right;
-        node.right = tempNode;
+        swapLeftRight(node);
 
         // Recursively invert the left subtree
         depthFirstSearchInvert(node.left);
         // Recursively invert the right subtree
         depthFirstSearchInvert(node.right);
+    }
+
+    private static void swapLeftRight(TreeNode node) {
+        TreeNode tempNode = node.left;
+        node.left = node.right;
+        node.right = tempNode;
     }
 }

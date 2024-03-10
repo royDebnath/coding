@@ -4,9 +4,16 @@ import java.util.Arrays;
 
 /**
  * Problem Description
- * The given problem presents us with a scenario where we need to find the k(^{th}) largest element in a provided integer array nums. Unlike finding the maximum or minimum element, this task requires us to identify the value that would be placed at the k(^{th}) largest position if the array were sorted. However, the twist in this problem is that duplicates are allowed, and each instance counts for the position. For example, if nums = [3,2,3,1,2,4,5,5,6] and k = 4, the fourth largest element is 4.
+ * The given problem presents us with a scenario where we need to find the k(^{th})
+ * largest element in a provided integer array nums. Unlike finding the maximum or minimum element,
+ * this task requires us to identify the value that would be placed at the k(^{th}) largest position
+ * if the array were sorted. However, the twist in this problem is that duplicates are allowed,
+ * and each instance counts for the position. For example, if nums = [3,2,3,1,2,4,5,5,6] and k = 4,
+ * the fourth largest element is 4.
  *
- * Moreover, the problem poses an additional challenge: it hints at the possibility of finding the solution without sorting the entire array, which might suggest that there are more optimal ways to solve this especially when we consider time complexity.
+ * Moreover, the problem poses an additional challenge: it hints at the possibility of finding the
+ * solution without sorting the entire array, which might suggest that there are more optimal ways to
+ * solve this especially when we consider time complexity.
  *
  *
  */

@@ -3,7 +3,8 @@ package com.java.codinground.programs.leetcode.top;
 /**
  * Given an array nums of size n, return the majority element.
  *
- * The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+ * The majority element is the element that appears more than n / 2 times.
+ * You may assume that the majority element always exists in the array.
  *
  *
  *
@@ -18,7 +19,8 @@ package com.java.codinground.programs.leetcode.top;
  *
  * Moore Voting Algorithm
  * Intuition:
- * The intuition behind the Moore's Voting Algorithm is based on the fact that if there is a majority element in an array, it will always remain in the lead, even after encountering other elements.
+ * The intuition behind the Moore's Voting Algorithm is based on the fact that if there is a majority
+ * element in an array, it will always remain in the lead, even after encountering other elements.
  *
  * Explanation:
  * Algorithm:

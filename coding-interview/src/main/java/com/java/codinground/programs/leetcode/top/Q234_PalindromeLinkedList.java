@@ -16,6 +16,7 @@ import com.java.codinground.support.ListNode;
  * using the fast and slow pointers approach. Then, we will reverse the second half of the linked list,
  * starting from the node after the middle node until the end of the list.
  * Next, we will compare the first half with the second half.
+ *
  * If both halves of the list match, the linked list is a palindrome. Otherwise, it is not.
  *
  * Even Odd Calculation :
@@ -38,15 +39,18 @@ import com.java.codinground.support.ListNode;
  * 1,3,5
  * 1,2,3
  *
- * So, the slow pointer is at the exact middle of the list which divides the list in left and right with equal number of
- * elements. But we want to compare the left half and the reversed right half for equality.
+ * So, the slow pointer is at the exact middle of the list which
+ * divides the list in left and right with equal number of elements.
+ * But we want to compare the left half and the reversed right half for equality.
  * so moving the slow pointer one more step will make it point to the starting of right half.
- * then we can reverse the list starting with slow and compare with the first half which is starting with head in the original order.
+ * then we can reverse the list starting with slow and compare with the first half
+ * which is starting with head in the original order.
  *
  * had it been even :
  *
  * 1,2,3,4,5,6 - the fast pointer will move to 1,3,5 and then,
- * fast = fast.next.next i.e 6.next, in this case fast==null, because the list ends at 6 and 6.next is null
+ * fast = fast.next.next i.e 6.next, in this case fast==null, because the list ends at 6 and
+ * 6.next is null
  *
  * so we can conclude in case of odd list the loop ends with fast !=null and hence
  * we move the slow or mid pointer one more step ahead to point to the middle element,
@@ -70,27 +74,26 @@ import com.java.codinground.support.ListNode;
 public class Q234_PalindromeLinkedList {
 
     public static boolean isPalindrome(ListNode head) {
+        ListNode rightHalf;
+
+
+        ListNode leftHalf = head;
         ListNode fast = head;
         ListNode slow = head;
 
-        while(fast != null && fast.next != null) {
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
 
-        if(fast != null) {
-            slow = slow.next;
+        if (fast != null) { // odd list, move the slow pointer one more step to point to right half head
+            rightHalf = slow.next;
+        } else {
+            rightHalf = slow;
         }
 
-        compareTwoHalves(head, slow); // head is the start, slow is the reversed second half
-
-        slow = reverse(slow);
-
-        while(slow != null && head.val == slow.val) {
-            head = head.next;
-            slow = slow.next;
-        }
-        return slow == null;
+        ListNode reverseRight = reverse(rightHalf);
+        return compareTwoHalves(leftHalf, reverseRight); // head is the start, slow is the reversed second half
     }
 
     private static boolean compareTwoHalves(ListNode firstHalf, ListNode secondHalf) {
@@ -107,19 +110,12 @@ public class Q234_PalindromeLinkedList {
 
     private static ListNode reverse(ListNode head) {
         ListNode prev = null;
-        while(head != null) {
+        while (head != null) {
             ListNode next = head.next;
             head.next = prev;
             prev = head;
             head = next;
         }
         return prev;
-    }
-
-
-    // Driver code
-    public static void main(String args[]) {
-
-
     }
 }

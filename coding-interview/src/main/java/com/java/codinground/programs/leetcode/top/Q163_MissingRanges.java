@@ -5,14 +5,25 @@ import java.util.List;
 
 /**
  * Problem Description
- * In this problem, you have two integers lower and upper representing the inclusive range of numbers. Also, you have an array nums which is sorted and contains unique integers that are within the given range. Some numbers within the range [lower, upper] might not be present in the nums array, and these numbers are considered "missing." The goal is to find the smallest sorted list of ranges, where each range covers the missing numbers without overlapping with any of the numbers in nums. The resulting ranges should together cover exactly all the missing numbers without any gaps or duplicates.
+ * In this problem, you have two integers lower and upper representing the inclusive range of numbers.
+ * Also, you have an array nums which is sorted and contains unique integers that are within the given range.
+ * Some numbers within the range [lower, upper] might not be present in the nums array,
+ * and these numbers are considered "missing." The goal is to find the smallest sorted list of ranges,
+ * where each range covers the missing numbers without overlapping with any of the numbers in nums.
+ * The resulting ranges should together cover exactly all the missing numbers without any gaps or duplicates.
  *
- * For example, if the lower is 0, upper is 99, and nums is [7, 28, 63], then the missing numbers are from 0 to 6, 8 to 27, and 29 to 62, and 64 to 99. You need to return these missing ranges in a sorted manner which could look like [[0, 6], [8, 27], [29, 62], [64, 99]].
+ * For example, if the lower is 0, upper is 99, and nums is [7, 28, 63],
+ * then the missing numbers are from 0 to 6, 8 to 27, and 29 to 62, and 64 to 99.
+ * You need to return these missing ranges in a sorted manner which could look like
+ * [[0, 6], [8, 27], [29, 62], [64, 99]].
  *
  * Intuition
- * The solution involves a direct simulation of the problem by iterating through the elements in the array nums and identifying the gaps between the consecutive numbers as well as the gaps between the lower, upper limits, and the first and last number in nums.
+ * The solution involves a direct simulation of the problem by iterating through the elements in
+ * the array nums and identifying the gaps between the consecutive numbers as well as the gaps
+ * between the lower, upper limits, and the first and last number in nums.
  *
- * Firstly, if the nums array is empty, the missing range is simply from lower to upper. However, if the array is not empty, we check for the following:
+ * Firstly, if the nums array is empty, the missing range is simply from lower to upper.
+ * However, if the array is not empty, we check for the following:
  *
  * Is there a gap between lower and the first element of the nums? If so, this forms a range that needs to be added to the answer.
  * We then iterate over the given array, checking the difference between each pair of consecutive numbers. If the difference is more than 1, we've found a gap (missing numbers) and thus a range. These gaps are then made into ranges and added to the answer.

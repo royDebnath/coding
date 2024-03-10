@@ -4,12 +4,16 @@ package com.java.codinground.blind75.tree;
  * 208. Implement Trie (Prefix Tree)
  * Medium
  * <p>
- * A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
+ * A trie (pronounced as "try") or prefix tree is a tree data structure used to efficiently
+ * store and retrieve keys in a dataset of strings. There are various applications of this data structure,
+ * such as autocomplete and spellchecker.
  * <p>
  * Implement the Trie class:
  * <p>
  * Trie() Initializes the trie object.
+ *
  * void insert(String word) Inserts the string word into the trie.
+ *
  * boolean search(String word) Returns true if the string word is in the trie (i.e., was inserted before), and false otherwise.
  * boolean startsWith(String prefix) Returns true if there is a previously inserted string word that has the prefix prefix, and false otherwise.
  * <p>
@@ -81,28 +85,31 @@ class Trie {
         current.isWord = true; // mark it true at the end of loop of word
     }
 
-    public boolean search(String word) {
-        TrieNode current = root;
-        for (char c : word.toCharArray()) {
-            int index = c - 'a';
-            if (current.children[index] == null) {
-                return false;
+    private TrieNode searchPrefix(String s) {
+        TrieNode currentNode = root;
+        for (char letter : s.toCharArray()) {
+            int index = letter - 'a';
+            if (currentNode.children[index] == null) {
+                // If the next node doesn't exist, return null indicating the prefix doesn't exist.
+                return null;
             }
-            current = current.children[index];
+            // Move to the next Trie node.
+            currentNode = currentNode.children[index];
         }
-        return current.isWord;
+        return currentNode; // The node where the search ended, could represent the prefix
+        // or the whole word.
+    }
+
+    public boolean search(String word) {
+        TrieNode node = searchPrefix(word);
+        // If the node is not null and isEndOfWord is true, the word exists in the trie.
+        return node != null && node.isWord;
     }
 
     public boolean startsWith(String prefix) {
-        TrieNode node = root;
-        for (char c : prefix.toCharArray()) {
-            int index = c - 'a';
-            if (node.children[index] == null) {
-                return false;
-            }
-            node = node.children[index];
-        }
-        return true;
+        TrieNode node = searchPrefix(prefix);
+        // If the node is not null and isEndOfWord is true, the word exists in the trie.
+        return node != null;
     }
 }
 

@@ -1,167 +1,141 @@
 package com.java.codinground.programs.leetcode.top;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
- * Problem Description
- * The problem gives us numCourses total number of courses, each labeled uniquely from 0 to numCourses - 1. We are also given an array of course pairs for prerequisites, where each pair [a, b] signifies that course a requires course b as a prerequisite. The goal is to determine if it is possible to complete all the courses fulfilling their respective prerequisites.
+
+ /**
+ * 207. Course Schedule
+ * Medium
  *
- * To simplify: imagine you have a list of courses, each with dependencies on other courses. You can only take a course if all of its prerequisite courses have been completed. You need to figure out if you can schedule these courses in such a way that all can be finished.
+ * There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1.
+ * You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates
+ * that you must take course bi first if you want to take course ai.
  *
- * Intuition
- * The intuition behind the solution is based on detecting a possible cyclic dependency among the courses which would make it impossible to complete all of them. If there's a cycle, you would be in a situation where to take course X you need to have completed course Y, but course Y similarly requires course X. This deadlock prevents completion of the courses.
+ * For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
+ * Return true if you can finish all courses. Otherwise, return false.
  *
- * To solve this, we use topoogical sorting based on Kahn's algorithm, which is a strategy for sorting nodes in a directed graph. This approach works well here because prerequisites create a directed graph where courses are nodes and dependencies are edges.
  *
- * Breaking down the intuition step by step:
  *
- * We construct a directed graph where each node is a course, and edges represent prerequisites (a directed edge from course b to course a means b is a prerequisite for a).
- * We count incoming edges (indegrees) for each node. If a node/course has no incoming edges, it means there are no prerequisites, and it can be taken immediately.
- * We repeatedly pick and remove nodes with no incoming edges (representing courses with all prerequisites completed or no prerequisites at all) and remove all edges from these nodes to other nodes (simulating taking the course and fulfilling those prerequisites).
- * If we manage to remove all nodes (take all courses), then it's possible to finish all courses.
- * In more technical terms:
+ * Example 1:
  *
- * We are using a graph (specifically a directed graph) to represent the dependencies between courses.
- * A defaultdict is used to keep track of what courses depend on a given course.
- * An array indeg maintains the count of prerequisites (incoming edges) for each course.
- * A queue (deque) helps in processing the courses with zero incoming edges (prerequisites).
- * We traverse the graph starting from nodes with zero indegrees, repeatedly reducing the indegrees of the dependent nodes and adding them to the queue when their indegre becomes zero.
- * If we process (cnt) the same number of courses as are given by numCourses, we return true; else, a cycle must exist, and we return false.
- * Solution Approach
- * The solution approach is genuinely inspired by the topological sorting algorithm. It uses several data structures and algorithms to implement the logic described in the Intuition section.
+ * Input: numCourses = 2, prerequisites = [[1,0]]
+ * Output: true
+ * Explanation: There are a total of 2 courses to take.
+ * To take course 1 you should have finished course 0. So it is possible.
+ * Example 2:
  *
- * Here are the main points of the implementation, outlined step by step:
+ * Input: numCourses = 2, prerequisites = [[1,0],[0,1]]
+ * Output: false
+ * Explanation: There are a total of 2 courses to take.
+ * To take course 1 you should have finished course 0, and to take course 0 you should also have
+ * finished course 1. So it is impossible.
  *
- * Graph Representation:
+ * Solution :
  *
- * A defaultdict for adjacency list representation of our directed graph: g = defaultdict(list).
- * Each course is a node, and each element in the list represents the adjacent nodes. For example, if course b is a prerequisite for course a, then a will be in the adjacency list of b.
- * In-Degree Array:
+ * The code aims to solve the problem of determining whether it is possible to finish all the given courses
+ * without any cyclic dependencies. It uses the topological sort algorithm, specifically Kahn's algorithm.
  *
- * An array indeg that represents the in-degree of each node (number of prerequisites for each course): indeg = [0] * numCourses.
- * Whenever a prerequisite relation (edge) is added, we increment the in-degree count for course a.
- * Building the Graph and In-Degree Array:
+ * Initialization:
+ * Create an empty adjacency list to represent the directed graph. Each node in the graph
+ * represents a course, and the edges represent the prerequisites.
  *
- * We iterate through the prerequisites list, for each pair [a, b] we:
- * Add a to the adjacency list of b: g[b].append(a)
- * Increase the in-degree of a: indeg[a] += 1
- * Processing Nodes with Zero In-Degrees:
+ * Create an array called indegree of size n (number of courses) and initialize all its elements to 0.
+ * The indegree array will keep track of the number of incoming edges to each course.
  *
- * A queue q using deque is initialized with all courses that have zero in-degree.
- * cnt variable is initialized to count the number of courses that we've been able to schedule (process).
- * Topological Sort:
+ * Create an empty ans list to store the topological order of the courses.
  *
- * While our queue q is not empty, we process the nodes (courses) inside our queue:
- * i = q.popleft(): we get a course i from the queue.
- * cnt += 1: increment our counter as we are able to take course i.
- * For each adjacent course j in our graph (g[i]):
- * Decrease the in-degree of j: indeg[j] -= 1
- * If the in-degree of j becomes zero, it means all prerequisites of j are satisfied, and we can add j to our queue: q.append(j)
- * Return Value:
  *
- * After the whole process, if cnt matches numCourses, it means we were able to find a way to take all courses, and we return true.
- * If cnt does not match numCourses, it implies there are courses with prerequisites that form a cycle so we could not process them, and we return false.
- * This algorithm efficiently determines whether all courses can be taken by making sure all nodes are processed, ensuring that there are no directed cycles in our graph which would indicate an impossible situation with mutual prerequisites.
+ * 2.Building the Graph:
  *
- * Example Walkthrough
- * Let's use a small example to illustrate the solution approach.
+ * Iterate over the prerequisites list, which contains pairs of courses indicating the prerequisites.
+ * For each pair [a, b], add an edge in the adjacency list from b to a.
+ * This indicates that course b must be completed before course a.
+ * Increment the indegree of course a by 1, as it has one more prerequisite.
  *
- * Suppose we have numCourses = 4 and prerequisites = [[1,0],[2,0],[3,1],[3,2]]. This means we have 4 courses labeled 0 to 3. The prerequisites are that course 1 requires course 0, course 2 requires course 0, and course 3 requires both courses 1 and 2.
+ * Performing Topological Sort using Kahn's Algorithm:
  *
- * Following the steps of the solution approach:
+ * Create an empty queue called q to store the nodes to visit.
  *
- * Graph Representation:
+ * Iterate over all the courses (0 to n-1) and enqueue the courses with an indegree of 0 into the queue.
+ * These courses have no prerequisites and can be started immediately.
  *
- * Initialize the graph g and have courses 0 to 3 without any edges.
- * It will look like this: g = {0:[], 1:[], 2:[], 3:[]} before adding prerequisites.
- * In-Degree Array:
+ * While the queue is not empty, do the following:
  *
- * Initialize the in-degree array indeg to have all zeros since we haven't accounted for any prerequisites yet: indeg = [0, 0, 0, 0].
- * Building the Graph and In-Degree Array:
+ * Dequeue the front element from the queue and store it in a variable t.
+ * Add t to the ans list to keep track of the topological order.
+ * For each neighbor x of t in the adjacency list:
+ * Decrement the indegree of x by 1 since we are removing the prerequisite t.
+ * If the indegree of x becomes 0, enqueue x into the queue.
+ * This means that all the prerequisites of course x have been completed.
  *
- * Add prerequisites to the graph. After iterating through the prerequisites, g will look like this:
- * g = {0:[1,2], 1:[3], 2:[3], 3:[]}
- * The in-degree array indeg will be [0, 1, 1, 2] indicating the number of courses each course is waiting on.
- * Processing Nodes with Zero In-Degrees:
+ * Checking the Result:
  *
- * Initialize the queue q with courses that have an in-degree of 0: q = deque([0]).
- * The cnt variable is set to 0.
- * Topological Sort:
- *
- * Process the queue:
- * Pop course 0. We can take the course 0 because it has no prerequisites.
- * Increment cnt to 1.
- * Reduce the in-degree of courses dependent on course 0 (1 and 2), so indeg becomes [0, 0, 0, 2].
- * Since courses 1 and 2 now have an in-degree of 0, add them to q: q = deque([1,2]).
- * Continue processing:
- * Pop course 1. Increment cnt to 2.
- * Reduce the in-degree of course 3 (dependent on course 1), now indeg is [0, 0, 0, 1].
- * Do not add anything to queue as no new courses have an in-degree of 0.
- * Pop course 2. Increment cnt to 3.
- * Again, reduce the in-degree of course 3, indeg now becomes [0, 0, 0, 0].
- * Add course 3 to q since it now has an in-degree of 0: q = deque([3]).
- * Finally:
- * Pop course 3. Increment cnt to 4.
- * Return Value:
- *
- * Now, cnt is 4 which is equal to numCourses indicating we have been able to find an order to take all courses without getting stuck in a cycle.
+ * After the topological sort is complete, check if the size of the ans list is equal
+ * to the total number of courses (n).
+ * If they are equal, it means that all the courses can be finished without any cyclic dependencies.
  * Return true.
- * Thus, we can confirm that it is indeed possible to complete all the courses fulfilling their respective prerequisites with this particular example.
+ * If the sizes are different, it implies that there is a cycle in the graph,
+ * and it is not possible to complete all the courses. Return false.
  *
- *
+ * Intuition:
+ * The intuition behind this approach is that if there is a cycle in the graph,
+ * there will be at least one node that cannot be visited
+ * since it will always have a nonzero indegree. On the other hand, if there are no cycles,
+ * all the nodes can be visited by starting from the nodes with no incoming edges and removing their
+ * outgoing edges one by one.
+ * If all the nodes are visited in the end, it means that it is possible to finish all the courses.
  */
 public class Q207_CourseSchedule {
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        // Create a graph represented by an adjacency list where each course points to its prerequisites
-        List<List<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < numCourses; i++) {
-            graph.add(new ArrayList<>());
+
+    public static void main(String[] args) {
+        int numCourses = 2;
+        int[][] prerequisites = {{1,0},{0,1}};
+        System.out.println(canFinish(numCourses, prerequisites));
+    }
+    public static boolean canFinish(int n, int[][] prerequisites) {
+        List<Integer>[] adj = new List[n];
+        int[] indegree = new int[n];
+        List<Integer> ans = new ArrayList<>();
+
+        /**
+         * populate the adjacency list.
+         * Array's nth location  is the prereq course i.e n is the prereq. and the contents of the list
+         * in the nth location of the array are the courses for that prereq.
+         */
+        for (int[] pair : prerequisites) {
+            int course = pair[0];
+            int prerequisite = pair[1];
+            if (adj[prerequisite] == null) {
+                adj[prerequisite] = new ArrayList<>();
+            }
+            adj[prerequisite].add(course);
+            indegree[course]++; //if course has prereq indegree increases
         }
-
-        // Create an array to store the in-degree (number of prerequisites) for each course
-        int[] inDegrees = new int[numCourses];
-
-        // Populate the graph and update the in-degrees based on the prerequisites
-        for (int[] prerequisite : prerequisites) {
-            int course = prerequisite[0];
-            int prerequisiteCourse = prerequisite[1];
-            graph.get(prerequisiteCourse).add(course);
-            inDegrees[course]++; // Increment the in-degree of the course
-        }
-
-        // Queue to hold courses with in-degree of 0 (no prerequisites)
-        Deque<Integer> queue = new ArrayDeque<>();
-
-        // Enqueue all courses which have no prerequisites
-        for (int i = 0; i < numCourses; i++) {
-            if (inDegrees[i] == 0) {
+        Queue<Integer> queue = new LinkedList<>();
+        //build the queue with indegree=0 elements
+        for (int i = 0; i < n; i++) {
+            if (indegree[i] == 0) { // have to start with courses with indegree 0, i.e courses with no prereq.
                 queue.offer(i);
             }
         }
 
-        // Counter for number of courses that have been processed
-        int processedCourses = 0;
-
-        // Process the courses in the queue
         while (!queue.isEmpty()) {
-            int course = queue.poll();
-            processedCourses++; // Increment count of processed courses
+            int current = queue.poll();
+            ans.add(current); // queue only contains courses with no prereq so they are added to the answer.
 
-            // Iterate over the neighbors of the current course
-            for (int neighbor : graph.get(course)) {
-                // Decrement the in-degree of each neighbor, since we have processed one of their prerequisites
-                inDegrees[neighbor]--;
-                if (inDegrees[neighbor] == 0) {
-                    // If in-degree becomes 0, it means all prerequisites are met, so enqueue the course
-                    queue.offer(neighbor);
+            if (adj[current] != null) {
+                for (int next : adj[current]) { // for each course of the adjList of the prereq with zero indegeree(current) reduce the indegree by 1 or remove the edge
+                    indegree[next]--;
+                    if (indegree[next] == 0) { // course indegree zero means it can be done without prereq, so add it to the queue
+                        queue.offer(next);
+                    }
                 }
             }
         }
 
-        // If the number of processed courses equals the total number of courses, all can be finished
-        return processedCourses == numCourses;
+
+
+        return ans.size() == n;
     }
 }

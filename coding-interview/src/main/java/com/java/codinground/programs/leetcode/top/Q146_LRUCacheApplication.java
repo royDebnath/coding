@@ -39,7 +39,7 @@ import java.util.Map;
 public class Q146_LRUCacheApplication {
     public static void main(String[] args) {
         System.out.println();
-        Q146_LRUCacheApplication_2 lRUCache = new Q146_LRUCacheApplication_2(2);
+        LruCache lRUCache = new LruCache(2);
         lRUCache.put(1, 1); // cache is {1=1}
         lRUCache.put(2, 2); // cache is {1=1, 2=2}
         lRUCache.get(1);    // return 1
@@ -51,13 +51,13 @@ public class Q146_LRUCacheApplication {
         lRUCache.get(4);    // return 4
     }
 }
-class LRUCache {
+class LruCache {
     final Node head = new Node(); //dummy node to keep track of position while insertion/deletion
     final Node tail = new Node(); //dummy node to keep track of position while insertion/deletion
     Map<Integer, Node> cache;
     int CAPACITY;
 
-    public LRUCache(int capacity) {
+    public LruCache(int capacity) {
         this.CAPACITY = capacity;
         cache = new HashMap<>(capacity);
         head.next = tail;
@@ -84,9 +84,9 @@ class LRUCache {
             // since this key is touched, keeping it in front by explicitly removing and adding
         } else { // new node, does not already exist in the map/cache
             if (CAPACITY == cache.size()) {//checking if cache is full
-                Node last_node = tail.prev;
-                remove(last_node);
-                cache.remove(last_node.key);
+                Node last_node = tail.prev; // identify last node
+                remove(last_node); // remove node from linked list
+                cache.remove(last_node.key); // remove node from cache map
             }
             Node newNode = new Node(); //create new node
             newNode.key = key; // assign key to new node
@@ -98,8 +98,10 @@ class LRUCache {
 
     private void add(Node node) {
         Node headNext = head.next; // head -> headNext
+
         node.next = headNext; // node -> headNext
         headNext.prev = node; // node <- headNext
+
         head.next = node; // head -> node
         node.prev = head; // head <-node
         // so finally head <=> node <=> headNext
