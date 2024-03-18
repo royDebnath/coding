@@ -1,4 +1,4 @@
-package com.java.codinground.blind75.graph;
+package com.java.codinground.leetcode.top;
 
 import java.util.*;
 
@@ -8,34 +8,20 @@ import java.util.*;
  * 6.8K
  * 1.3K
  * Companies
- * There is an m x n rectangular island that borders both the Pacific Ocean and Atlantic Ocean.
- * The Pacific Ocean touches the island's left and top edges, and
- * the Atlantic Ocean touches the island's right and bottom edges.
+ * There is an m x n rectangular island that borders both the Pacific Ocean and Atlantic Ocean. The Pacific Ocean touches the island's left and top edges, and the Atlantic Ocean touches the island's right and bottom edges.
  *
- * The island is partitioned into a grid of square cells.
- * You are given an m x n integer matrix heights where
- * heights[r][c] represents the height above sea level of the cell at coordinate (r, c).
+ * The island is partitioned into a grid of square cells. You are given an m x n integer matrix heights where heights[r][c] represents the height above sea level of the cell at coordinate (r, c).
  *
- * The island receives a lot of rain, and the rain water can flow to neighboring cells
- * directly north, south, east, and west if the neighboring cell's height is
- * less than or equal to the current cell's height.
- * Water can flow from any cell adjacent to an ocean into the ocean.
+ * The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell's height is less than or equal to the current cell's height. Water can flow from any cell adjacent to an ocean into the ocean.
  *
- * Return a 2D list of grid coordinates result where result[i] = [ri, ci] denotes that
- * rain water can flow from cell (ri, ci) to both the Pacific and Atlantic oceans.
+ * Return a 2D list of grid coordinates result where result[i] = [ri, ci] denotes that rain water can flow from cell (ri, ci) to both the Pacific and Atlantic oceans.
  *
  *
  *
  * Example 1:
  *
  *
- * Input: heights =
- * [[1,2,2,3,5],
- *  [3,2,3,4,4],
- *  [2,4,5,3,1],
- *  [6,7,1,4,5],
- *  [5,1,1,2,4]]
- *
+ * Input: heights = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]
  * Output: [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]]
  * Explanation: The following cells can flow to the Pacific and Atlantic oceans, as shown below:
  * [0,4]: [0,4] -> Pacific Ocean
@@ -59,7 +45,7 @@ import java.util.*;
  * Output: [[0,0]]
  * Explanation: The water can flow from the only cell to the Pacific and Atlantic oceans.
  */
-public class Q70_PacificAtlanticWaterFlow {
+public class Q417_PacificAtlanticWaterFlow {
     public List<List<Integer>> pacificAtlanticBFS(int[][] heights) {
         final int rows = heights.length;
         final int cols = heights[0].length;
