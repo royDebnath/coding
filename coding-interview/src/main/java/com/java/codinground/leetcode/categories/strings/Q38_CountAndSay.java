@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.strings;
 
 /**
  * Problem Description
@@ -45,7 +45,7 @@ package com.java.codinground.leetcode.top;
  */
 public class Q38_CountAndSay {
     public static void main(String[] args) {
-        System.out.println(countAndSay(23));
+        System.out.println(countAndSay(4));
     }
     public static String countAndSay(int n) {
         String s = "1";
@@ -68,12 +68,17 @@ public class Q38_CountAndSay {
             {
                 result.append(count);
                 result.append(previous);
+
+                //initialize for the next loop
                 previous = current;
                 count = 1;
             }
         }
+
+        // add the last character
         result.append(count);
         result.append(previous);
+
         return result.toString();
     }
 }

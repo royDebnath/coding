@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.greedy;
 
 /**
  * Problem Description

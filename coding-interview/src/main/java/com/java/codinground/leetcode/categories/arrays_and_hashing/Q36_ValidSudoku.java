@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.arrays_and_hashing;
 
 
 import java.util.HashSet;

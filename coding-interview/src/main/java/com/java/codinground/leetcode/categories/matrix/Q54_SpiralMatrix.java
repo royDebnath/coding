@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.matrix;
 
 import java.util.ArrayList;
 import java.util.List;

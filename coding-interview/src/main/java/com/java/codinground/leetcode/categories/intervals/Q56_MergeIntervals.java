@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.intervals;
 
 import java.util.ArrayList;
 import java.util.Arrays;

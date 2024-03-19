@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +140,7 @@ import java.util.List;
  *
  *
  */
-public class Q46_Permutations  {
+public class Q46_Permutations {
     // List to hold all the permutations
     private List<List<Integer>> permutations = new ArrayList<>();
 

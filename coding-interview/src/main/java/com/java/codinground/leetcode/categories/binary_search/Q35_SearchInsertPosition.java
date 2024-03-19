@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.binary_search;
 
 /**
  * Given a sorted array of distinct integers and a target value,
