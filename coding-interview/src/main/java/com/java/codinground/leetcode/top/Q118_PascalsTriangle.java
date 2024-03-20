@@ -5,7 +5,14 @@ import java.util.List;
 
 /**
  * Problem Description
- * Given an integer numRows, the task is to return the first numRows of Pascal's triangle. In Pascal's triangle, each number is the sum of the two numbers directly above it except for the boundaries, which are always 1. The triangle starts with a 1 at the top. Then, each subsequent row contains one more number than the previous row, and these numbers are positioned such that they form a triangle. The challenge here is to compute these numbers using the given property of Pascal's triangle and to represent the triangle in the form of a list of lists, where each inner list corresponds to a row in the triangle.
+ * Given an integer numRows, the task is to return the first numRows of Pascal's triangle.
+ * In Pascal's triangle, each number is the sum of the two numbers directly above it except
+ * for the boundaries, which are always 1.
+ * The triangle starts with a 1 at the top. Then, each subsequent row contains one more number
+ * than the previous row, and these numbers are positioned such that they form a triangle.
+ * The challenge here is to compute these numbers using the given property of Pascal's triangle
+ * and to represent the triangle in the form of a list of lists, where each inner list corresponds
+ * to a row in the triangle.
  *
  * For example, the first 3 rows of Pascal's triangle look like this:
  *
@@ -13,7 +20,11 @@ import java.util.List;
  * 1 1             //Second row (two 1s at the boundaries)
  * 1 2 1           //Third row (1s at the boundaries, middle is sum of the two numbers above)
  * Intuition
- * The solution to generating Pascal's triangle is a direct application of its properties. The key idea is to start with the first row [1], and then generate each following row based on the previous row. For any new row, aside from the first and last elements which are 1, each element is obtained by adding the two numbers directly above it in the triangle. With this approach, we can iteratively construct each row and add it to the final result.
+ * The solution to generating Pascal's triangle is a direct application of its properties.
+ * The key idea is to start with the first row [1], and then generate each following row based on
+ * the previous row. For any new row, aside from the first and last elements which are 1,
+ * each element is obtained by adding the two numbers directly above it in the triangle.
+ * With this approach, we can iteratively construct each row and add it to the final result.
  *
  *
  */

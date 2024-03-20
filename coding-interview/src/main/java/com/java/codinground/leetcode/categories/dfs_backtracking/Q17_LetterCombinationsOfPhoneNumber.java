@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.categories.backtracking;
+package com.java.codinground.leetcode.categories.dfs_backtracking;
 
 import java.util.ArrayList;
 import java.util.HashMap;

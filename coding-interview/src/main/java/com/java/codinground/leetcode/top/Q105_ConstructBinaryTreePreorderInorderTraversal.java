@@ -10,7 +10,8 @@ import java.util.Arrays;
 
 /**
  * Given two integer arrays preorder and inorder where preorder is the preorder traversal
- * of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree
+ * of a binary tree and inorder is the inorder traversal of the same tree,
+ * construct and return the binary tree
  *
  * Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
  * Output: [3,9,20,null,null,15,7]
@@ -20,7 +21,8 @@ import java.util.Arrays;
  * Say we have 2 arrays, PRE and IN.
  * Preorder traversing implies that PRE[0] is the root node.
  * Then we can find this PRE[0] in IN, say it's IN[5].
- * Now we know that IN[5] is root, so we know that IN[0] - IN[4] is on the left side, IN[6] to the end is on the right side.
+ * Now we know that IN[5] is root, so we know that IN[0] - IN[4] is on the left side,
+ * IN[6] to the end is on the right side.
  * Recursively doing this on subarrays, we can build a tree out of it :)
  *
  * 1. The Root of the tree is the first element in Preorder Array.
@@ -32,9 +34,11 @@ import java.util.Arrays;
  * 6. Call recursively buildTree on the subarray composed by the elements
  * in the right subtree. Attach returned right subtree root as right child of Root node.
  * 7. return Root.
+ *
+ *
  */
 
-class Q105_ConstructBinaryTreefromPreorderandInorderTraversal {
+class Q105_ConstructBinaryTreePreorderInorderTraversal {
     public static void main(String[] args) {
         int[] preorder = {3,9,20,15,7};
         int [] inorder = {9,3,15,20,7};

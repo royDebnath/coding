@@ -35,13 +35,9 @@ public class Q121_BestTimetoBuyandSellStock {
         int profitIfSoldToday = 0; // profit if sold today
 
         for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < leastSoFar) { // if we found new buy value which is smaller than previous one
-                leastSoFar = prices[i]; // update our least so far
-            }
-            profitIfSoldToday = prices[i] - leastSoFar; // calculating profit if sold today by, Buy - sell
-            if (maxProfit < profitIfSoldToday) { // if profitIfSoldToday is more than our previous overall profit
-                maxProfit = profitIfSoldToday; // update overall profit
-            }
+            leastSoFar = Math.min(prices[i], leastSoFar); // finding new buy value smaller than previous
+            profitIfSoldToday = prices[i] - leastSoFar; // calculating profit if sold today, Buy - sell
+            maxProfit = Math.max(maxProfit, profitIfSoldToday);
         }
         return maxProfit; // return maxProfit
     }

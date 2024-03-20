@@ -1,5 +1,7 @@
 package com.java.codinground.leetcode.top;
 
+import com.java.codinground.support.ListNode;
+
 /**
  * Problem Description
  * The problem presents us with a singly linked list and requires us to sort it in ascending order.
@@ -119,27 +121,27 @@ public class Q148_SortList {
      * @param head The head node of the linked list.
      * @return The sorted linked list.
      */
-    public LinkedListNode sortList(LinkedListNode head) {
+    public ListNode sortList(ListNode head) {
         // Base cases: if the list is empty or has just one element, it is already sorted.
         if (head == null || head.next == null) {
             return head;
         }
 
         // Find the midpoint of the list using the slow and fast pointer approach.
-        LinkedListNode slow = head;
-        LinkedListNode fast = head.next;
+        ListNode slow = head;
+        ListNode fast = head.next;
         while (fast != null && fast.next != null) {
             slow = slow.next; // moves one step at a time
             fast = fast.next.next; // moves two steps at a time
         }
 
         // Split the list into two halves.
-        LinkedListNode mid = slow.next;
+        ListNode mid = slow.next;
         slow.next = null;
 
         // Recursively sort each half.
-        LinkedListNode leftHalf = sortList(head);
-        LinkedListNode rightHalf = sortList(mid);
+        ListNode leftHalf = sortList(head);
+        ListNode rightHalf = sortList(mid);
 
         // Merge the two halves and return the merged sorted list.
         return merge(leftHalf, rightHalf);
@@ -152,12 +154,12 @@ public class Q148_SortList {
      * @param list2 The head node of the second sorted linked list.
      * @return The head node of the merged sorted linked list.
      */
-    private LinkedListNode merge(LinkedListNode list1, LinkedListNode list2) {
+    private ListNode merge(ListNode list1, ListNode list2) {
         // Create a dummy node to serve as the starting point for the merged list.
-        LinkedListNode dummyHead = new LinkedListNode();
+        ListNode dummyHead = new ListNode();
 
         // Use a pointer to build the new sorted linked list.
-        LinkedListNode current = dummyHead;
+        ListNode current = dummyHead;
         while (list1 != null && list2 != null) {
             // Choose the node with the smaller value from either left or right,
             // and append it to the current node of the merged list.
@@ -176,24 +178,5 @@ public class Q148_SortList {
 
         // Return the head of the merged sorted list, which is the next node of the dummy node.
         return dummyHead.next;
-    }
-}
-
-/**
- * Definition for singly-linked list.
- */
-class LinkedListNode {
-    int val;
-    LinkedListNode next;
-
-    LinkedListNode() {}
-
-    LinkedListNode(int val) {
-        this.val = val;
-    }
-
-    LinkedListNode(int val, LinkedListNode next) {
-        this.val = val;
-        this.next = next;
     }
 }

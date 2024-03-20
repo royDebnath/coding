@@ -17,7 +17,7 @@ public class Q74_Search2DMatrix {
         int[][] matrix = {{1, 5, 9},
                 {14, 20, 21},
                 {30, 34, 43}};
-        System.out.println(searchMatrix(matrix, 7));
+        System.out.println(searchMatrix(matrix, 1));
     }
 
     // Method to search for a target value in a matrix.
@@ -29,27 +29,27 @@ public class Q74_Search2DMatrix {
         int left = 0, right = rows * cols - 1;
 
         // Loop until the search space is reduced to one element.
-        while (left < right) {
+        while (left <= right) {
             // Calculate the middle point of the current search space.
             int mid = (left + right) / 2;
 
             // Map the middle index to a 2D position in the matrix.
-            int row = mid / cols, col = mid % cols;
+            int midRow = mid / cols;
+            int midCol = mid % cols;
 
+            int midElement = matrix[midRow][midCol];
             // Compare the middle element with the target.
-            if (matrix[row][col] >= target) {
-                // If the middle element is greater or equal to the target,
-                // narrow the search to the left half including mid.
-                right = mid;
-            } else {
-                // If the middle element is less than the target,
-                // narrow the search to the right half excluding mid.
+            if (target < midElement) {
+                right = mid - 1;
+            } else if (target > midElement) {
                 left = mid + 1;
+            } else {
+                System.out.println("Element found -- rowIndex : " + midRow + " colIndex : " + midCol);
+                return true;
             }
         }
-
         // After exiting the loop, left should point to the target element, if it exists.
         // Check if the element at the 'left' position equals the target.
-        return matrix[left / cols][left % cols] == target;
+        return false;
     }
 }

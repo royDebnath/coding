@@ -14,18 +14,20 @@ package com.java.codinground.leetcode.top;
  *
  */
 public class Q79_WordSearch {
+    static boolean[][] visited;
     public static void main(String[] args) {
 
         char[][] input = {{'A','B','C','N'},
-                {'S','F','C','S'},
-                {'A','D','E','T'}};
+                          {'S','F','C','S'},
+                          {'A','D','E','T'}};
 
-        System.out.println(exist(input, "CSE"));
+        System.out.println(exist(input, "ABCCS"));
     }
     public static boolean exist(char[][] board, String word) {
         /*Find word's first letter.  Then call method to check its surroundings */
         int noOfRows = board.length;
         int noOfColumns = board[0].length;
+        visited = new boolean[noOfRows][noOfColumns];
         for (int rowIndex = 0; rowIndex < noOfRows; rowIndex++) {
             for (int colIndex = 0; colIndex < noOfColumns; colIndex++)
                 if (board[rowIndex][colIndex] == word.charAt(0)) { //If the first character is found call the recursive method to check surroundings to match the word.
@@ -53,16 +55,15 @@ public class Q79_WordSearch {
         /* if off bounds, letter is seen, letter is unequal to word.charAt(wordIndex) return false */
         char currentCharInBoard = b[rowIndex][colIndex];
 
-        if (currentCharInBoard == '0' || currentCharInBoard != currentCharInWord)
+        if ( visited[rowIndex][colIndex] || currentCharInBoard != currentCharInWord)
             return false;
 
         /**
-         * If we reached this point, that means current character is a valid character of the word in the right
-         * sequence in the board. Rigt sequence being horizontally or vertically adjacent that we put in the recursion
-         * logic. We will mark this position in the board as visited.
+         * If we reached this point, that means current character is a valid character of the word
+         * in the right sequence in the board. Rigt sequence being horizontally or vertically adjacent
+         * that we put in the recursion logic. We will mark this position in the board as visited.
          */
-        char tmp = currentCharInBoard; //take backup
-        b[rowIndex][colIndex] = '0'; //mark visited
+        visited[rowIndex][colIndex] = true;
 
 
         /* recursion on all 4 sides for next letter, for the next match till the whole word is found.
@@ -81,7 +82,7 @@ public class Q79_WordSearch {
          * to its previous value and the recursion will return to the call from where we started
          * to check for the adjacent cells.
          */
-        b[rowIndex][colIndex] = tmp;
+        visited[rowIndex][colIndex] = false;
 
         return false;
     }
