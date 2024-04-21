@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.trees;
 
 /**
  * Given a binary tree root, a node X in the tree is named good if in the path

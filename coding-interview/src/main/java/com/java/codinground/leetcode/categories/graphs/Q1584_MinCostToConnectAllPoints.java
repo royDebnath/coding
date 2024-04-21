@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.graphs;
 
 /**
  * You are given an array points representing integer coordinates of some points on a 2D-plane,

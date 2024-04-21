@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.top;
+package com.java.codinground.leetcode.categories.heap;
 
 /**
  * You are given an array of integers stones where stones[i] is the weight of the ith stone.
