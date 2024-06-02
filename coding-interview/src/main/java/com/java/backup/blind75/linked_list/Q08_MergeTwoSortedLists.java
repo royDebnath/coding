@@ -1,6 +1,6 @@
 package com.java.backup.blind75.linked_list;
 
-import com.java.codinground.support.ListNode;
+import com.java.codinground.leetcode.support.ListNode;
 
 /**
  * 21. Merge Two Sorted Lists

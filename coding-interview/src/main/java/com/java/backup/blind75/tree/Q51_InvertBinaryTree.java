@@ -1,6 +1,6 @@
 package com.java.backup.blind75.tree;
 
-import com.java.codinground.support.TreeNode;
+import com.java.codinground.leetcode.support.TreeNode;
 
 public class Q51_InvertBinaryTree {
     public static void main(String[] args) {

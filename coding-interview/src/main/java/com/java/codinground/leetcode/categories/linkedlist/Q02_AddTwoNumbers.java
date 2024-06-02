@@ -1,6 +1,6 @@
 package com.java.codinground.leetcode.categories.linkedlist;
 
-import com.java.codinground.support.LinkedList;
+import com.java.codinground.leetcode.support.LinkedList;
 
 /**
  * You are given two non-empty linked lists representing two non-negative integers.

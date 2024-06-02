@@ -1,7 +1,5 @@
 package com.java.codinground.dsalgo.datastructure.binarytree;
 
-import com.java.codinground.support.TreeNode;
-
 class Node{
 	int data;
 	Node left;

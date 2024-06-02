@@ -1,4 +1,4 @@
-package com.java.codinground.leetcode.two_pointers;
+package com.java.codinground.leetcode.categories.two_pointers;
 
 /**
  * 167. Two Sum II - Input Array Is Sorted

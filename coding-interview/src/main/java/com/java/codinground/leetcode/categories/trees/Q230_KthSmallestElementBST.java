@@ -1,6 +1,6 @@
 package com.java.codinground.leetcode.categories.trees;
 
-import com.java.codinground.support.TreeNode;
+import com.java.codinground.leetcode.support.TreeNode;
 
 import java.util.List;
 

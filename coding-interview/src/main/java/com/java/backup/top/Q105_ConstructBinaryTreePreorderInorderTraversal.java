@@ -4,7 +4,7 @@ package com.java.backup.top;
 // Inorder : Left -> Node -> Right
 
 
-import com.java.codinground.support.TreeNode;
+import com.java.codinground.leetcode.support.TreeNode;
 
 import java.util.Arrays;
 

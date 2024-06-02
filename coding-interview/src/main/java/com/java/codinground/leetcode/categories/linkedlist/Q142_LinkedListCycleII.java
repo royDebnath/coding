@@ -1,6 +1,6 @@
 package com.java.codinground.leetcode.categories.linkedlist;
 
-import com.java.codinground.support.ListNode;
+import com.java.codinground.leetcode.support.ListNode;
 
 /**
  * Given the head of a linked list, return the node where the cycle begins.

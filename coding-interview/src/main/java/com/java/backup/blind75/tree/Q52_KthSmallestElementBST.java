@@ -1,6 +1,6 @@
 package com.java.backup.blind75.tree;
 
-import com.java.codinground.support.TreeNode;
+import com.java.codinground.leetcode.support.TreeNode;
 
 /**
  * The inorder traversal of BST gives the sorted order of nodes.

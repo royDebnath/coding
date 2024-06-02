@@ -1,4 +1,4 @@
-package com.java.codinground.support;
+package com.java.codinground.leetcode.support;
 
 public class BST {
     public int value;

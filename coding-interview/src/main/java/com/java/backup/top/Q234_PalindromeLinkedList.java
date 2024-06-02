@@ -1,7 +1,7 @@
 package com.java.backup.top;
 
 
-import com.java.codinground.support.ListNode;
+import com.java.codinground.leetcode.support.ListNode;
 
 /**
  * Statement

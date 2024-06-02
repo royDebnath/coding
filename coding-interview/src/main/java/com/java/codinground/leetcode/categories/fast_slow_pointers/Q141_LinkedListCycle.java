@@ -1,6 +1,6 @@
 package com.java.codinground.leetcode.categories.fast_slow_pointers;
 
-import com.java.codinground.support.ListNode;
+import com.java.codinground.leetcode.support.ListNode;
 
 /**
  * Given head, the head of a linked list, determine if the linked list has a cycle in it.

@@ -1,6 +1,6 @@
 package com.java.backup.blind75.tree;
 
-import com.java.codinground.support.TreeNode;
+import com.java.codinground.leetcode.support.TreeNode;
 
 /**
  * Given the roots of two binary trees p and q, write a function to check if they are the same or not.
