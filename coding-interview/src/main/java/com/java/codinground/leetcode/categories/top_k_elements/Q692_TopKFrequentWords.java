@@ -30,7 +30,7 @@ import java.util.PriorityQueue;
  * Explanation: "the", "is", "sunny" and "day" are the four most frequent words, with the number of occurrence being 4, 3, 2 and 1 respectively.
  *
  */
-public class TopKFrequentWords {
+public class Q692_TopKFrequentWords {
     public List<String> topKFrequent(String[] words, int k) {
         HashMap<String, Integer> wordCounts = new HashMap<>();
         for(String word : words) {
