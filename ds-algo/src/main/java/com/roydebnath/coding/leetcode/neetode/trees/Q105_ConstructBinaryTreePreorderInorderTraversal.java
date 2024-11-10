@@ -4,7 +4,7 @@ package com.roydebnath.coding.leetcode.neetode.trees;
 // Inorder : Left -> Node -> Right
 
 
-import com.roydebnath.coding.leetcode.helper.TreeNode;
+import com.roydebnath.coding.leetcode.support.TreeNode;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package com.roydebnath.coding.leetcode.helper;
+package com.roydebnath.coding.leetcode.support;
 
 public class ListNode {
     public int val;

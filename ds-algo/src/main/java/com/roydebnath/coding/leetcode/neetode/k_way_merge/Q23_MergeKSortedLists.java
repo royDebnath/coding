@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.neetode.k_way_merge;
 
-import com.roydebnath.coding.leetcode.helper.ListNode;
+import com.roydebnath.coding.leetcode.support.ListNode;
 
 import java.util.PriorityQueue;
 

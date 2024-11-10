@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.neetode.fast_slow_pointers;
 
-import com.roydebnath.coding.leetcode.helper.ListNode;
+import com.roydebnath.coding.leetcode.support.ListNode;
 
 /**
  * Statement

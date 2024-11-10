@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.neetode.trees;
 
-import com.roydebnath.coding.leetcode.helper.TreeNode;
+import com.roydebnath.coding.leetcode.support.TreeNode;
 
 /**
  * Given the root of a binary tree, return its maximum depth.

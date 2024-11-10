@@ -1,7 +1,7 @@
 package com.roydebnath.coding.leetcode.neetode.linkedlist;
 
 
-import com.roydebnath.coding.leetcode.helper.ListNode;
+import com.roydebnath.coding.leetcode.support.ListNode;
 
 /**
  * You are given two non-empty linked lists representing two non-negative integers.

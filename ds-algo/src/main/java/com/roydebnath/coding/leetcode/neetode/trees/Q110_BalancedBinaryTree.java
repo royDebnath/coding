@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.neetode.trees;
 
-import com.roydebnath.coding.leetcode.helper.TreeNode;
+import com.roydebnath.coding.leetcode.support.TreeNode;
 
 /**
  * 110. Balanced Binary Tree

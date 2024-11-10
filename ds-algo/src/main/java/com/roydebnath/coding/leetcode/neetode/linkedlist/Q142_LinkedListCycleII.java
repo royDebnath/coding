@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.neetode.linkedlist;
 
-import com.roydebnath.coding.leetcode.helper.ListNode;
+import com.roydebnath.coding.leetcode.support.ListNode;
 
 /**
  * Given the head of a linked list, return the node where the cycle begins.

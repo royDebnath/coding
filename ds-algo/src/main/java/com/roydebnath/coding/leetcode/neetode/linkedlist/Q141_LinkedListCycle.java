@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.neetode.linkedlist;
 
-import com.roydebnath.coding.leetcode.helper.ListNode;
+import com.roydebnath.coding.leetcode.support.ListNode;
 
 /**
  * Given head, the head of a linked list, determine if the linked list has a cycle in it.

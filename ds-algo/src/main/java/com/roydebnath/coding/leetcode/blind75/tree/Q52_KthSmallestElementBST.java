@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.blind75.tree;
 
-import com.roydebnath.coding.leetcode.helper.TreeNode;
+import com.roydebnath.coding.leetcode.support.TreeNode;
 
 /**
  * The inorder traversal of BST gives the sorted order of nodes.

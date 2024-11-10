@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.blind75.linked_list;
 
-import com.roydebnath.coding.leetcode.helper.ListNode;
+import com.roydebnath.coding.leetcode.support.ListNode;
 
 /**
  * 21. Merge Two Sorted Lists

@@ -1,7 +1,7 @@
 package com.roydebnath.coding.leetcode.neetode.trees;
 
 
-import com.roydebnath.coding.leetcode.helper.TreeNode;
+import com.roydebnath.coding.leetcode.support.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

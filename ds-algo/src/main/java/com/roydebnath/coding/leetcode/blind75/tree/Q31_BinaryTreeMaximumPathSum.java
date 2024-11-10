@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.blind75.tree;
 
-import com.roydebnath.coding.leetcode.helper.TreeNode;
+import com.roydebnath.coding.leetcode.support.TreeNode;
 
 /**
  * A path in a binary tree is a sequence of nodes where each pair of adjacent nodes

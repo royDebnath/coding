@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.neetode.trees;
 
-import com.roydebnath.coding.leetcode.helper.TreeNode;
+import com.roydebnath.coding.leetcode.support.TreeNode;
 
 /**
  * Given a binary tree root, a node X in the tree is named good if in the path

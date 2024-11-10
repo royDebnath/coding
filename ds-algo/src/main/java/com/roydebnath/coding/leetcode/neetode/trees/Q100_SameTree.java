@@ -1,6 +1,6 @@
 package com.roydebnath.coding.leetcode.neetode.trees;
 
-import com.roydebnath.coding.leetcode.helper.TreeNode;
+import com.roydebnath.coding.leetcode.support.TreeNode;
 
 /**
  * Given the roots of two binary trees p and q, write a function to check if they are the same or not.
